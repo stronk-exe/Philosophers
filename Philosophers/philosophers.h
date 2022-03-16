@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/03/05 18:15:57 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/03/14 21:58:29 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_philo
 	int				t_think;
 	int				*n;
 	int				meal;
-	pthread_mutex_t	lock;
+	pthread_mutex_t	*fork;
 }					t_philo;
 
 //// ----- utils

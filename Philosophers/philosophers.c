@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/03/05 18:55:35 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/03/15 19:59:18 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 
 
 #include "stdio.h"
-/*
-void	eating(t_philo *philo)
+
+void	eating(t_philo *philo, int n)
 {
-	printf("%d %d has taken a fork\n", philo->t_eat, philo->n);
-	printf("%d %d is eating\n", philo->t_eat, philo->n);
+//	pthread_mutex_lock(&philo->fork[n]);
+	printf("%d %d has taken a fork\n", philo->t_eat, n);
+	printf("%d %d is eating\n", philo->t_eat, n);
 	sleep(philo->t_eat);
+//	pthread_mutex_unlock(&philo->fork[n]);
 }
-*/
+
 void	sleeping(t_philo *philo, int n)
 {
 	printf("%d %d is sleeping\n", philo->t_sleep, n);
@@ -42,42 +44,49 @@ void	died(t_philo *philo, int n)
 
 void	*routine(void *p)
 {
-	t_philo *philo;
+	t_philo *philo= NULL;
 	long time;
 	long	cc;
 	int	i;
+//	pthread_mutex_init(philo->fork, NULL);
 	struct timeval current_time;
 	gettimeofday(&current_time, NULL);
 
 	i = 0;
 	philo = p;
-	time = current_time.tv_sec * 1000;
-	cc = current_time.tv_sec * 1000;
+	time = current_time.tv_sec / 1000;
+	cc = time;
 //	pthread_mutex_lock(&(philo->lock));
 
 //	while ((cc * 1000) < (time + philo->t_die) /*&& i < philo->meal*/)
-	while (1)
+	while (cc < (time + philo->t_die) /*&& i < philo->meal*/)
+//	while (1)
 	{
-//		printf("raw time %ld\n", current_time.tv_sec);
-//		printf("new time %ld\n", current_time.tv_sec + philo->t_die);
-	//	eating(philo);
+	//	printf("raw time %ld\n", current_time.tv_sec);
+	//	printf("new time %ld\n", current_time.tv_sec + philo->t_die);
+		
+		printf("cc %ld\n", cc);
+		printf("time %ld\n", time+philo->t_die);
+	//	printf("cc %ld\n", cc);
 		i = 0;
-		while (i < philo->n_philo)
-		{
+	//	while (i < philo->n_philo)
+	//	{
 		//	if (philo->n[i] )
 			sleeping(philo,i);
+			eating(philo, i);
 		//	printf("----\n");
 			thinking(philo, i);
 		//	printf("----\n");
 			i++;
-		}
+	///	}
 	//	sleeping(philo);
 	//	thinking(philo, philo->n[i]);
-//		cc = gettimeofday(&current_time, NULL) * 1000;
+		cc = current_time.tv_sec;
 	//	i++;
 	}
-//	died(philo, n);
-//	pthread_mutex_unlock(&(philo->lock));
+	printf("cc %ld\n", cc/1000);
+	died(philo, i);
+//	pthread_mutex_destroy(philo->fork);
 	return(0);
 }
 
@@ -141,6 +150,8 @@ int main(int ac, char **av)
 			philos.meal = ft_atoi(av[5]);
 		philos.n = 0;
 		philos.n = malloc(sizeof(int)*philos.n_philo+1);
+	//	printf("nuber of philos %d\n", philos.n_philo);
+		philos.fork = malloc(sizeof(pthread_mutex_t)*philos.n_philo);
 		philos.n[philos.n_philo] = '\0';
 		philo(philos);
 	}
