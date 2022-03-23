@@ -1,12 +1,24 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/03/23 14:50:46 by ael-asri          #+#    #+#              #
+#    Updated: 2022/03/23 19:10:10 by ael-asri         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = philosophers
 
 
 SRCS =  philosophers.c\
 		forking.c\
-		philosophing.c\
+		threading.c\
 		routine.c\
 		actions.c\
-		philosophers_utils.c
+		philosophers_uils.c
 
 OBJS = $(SRCS:.c=.o)
 

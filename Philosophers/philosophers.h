@@ -6,12 +6,12 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/03/05 18:15:57 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/03/23 23:47:00 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS_H
-# define PHILOSOPHERS_H
+#ifndef PHILOSOPHERS
+# define PHILOSOPHERS
 
 # include "unistd.h"
 # include "stdio.h"
@@ -19,52 +19,46 @@
 # include "pthread.h"
 # include "sys/time.h"
 
-typedef struct s_massa2il
+typedef struct s_philo
 {
-	int	t_die;
-	int	t_sleep;
-	int	t_eat;
 	
-}					t_massa2il;
-
-typedef struct s_philosopher
-{
 	int	id;
-	int	n_philo;
-	int	meals;
-	int	t_die;
-	int	t_sleep;
-	int	t_eat;
-	int	all_alive;
-	int	done_with_eating;
+	int	r_fork;
+	int	l_fork;
+}				t_philo;
+
+typedef struct s_data
+{
+	pthread_t		*t;
+	int				n_philo;
+	long			t_die;
+	int				t_sleep;
+	int				t_eat;
+	int				n_meals;
+	t_philo			*philo;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork_eat;
-	pthread_mutex_t	*must_eat;
-	t_massa2il 		massa2il;
-}	t_philosopher;
+	pthread_mutex_t	lock;
+}					t_data;
 
-//// ------ philosophing
-void create_philosophers(t_philosopher *my_philo);
-
-//// ------ forking
-void create_forks(t_philosopher *my_philo);
-void    take_forks(t_philosopher *my_philo);
-void    let_forks(t_philosopher *my_philo);
-
-////  ------ actions
-int everything_ok(t_philosopher *my_philospher);
-void    eating(t_philosopher *my_philo);
-void    sleeping(t_philosopher *my_philo);
-void    thinking(t_philosopher *my_philo);
-
-//// ------ routine
+//	-------- routine
 void	*routine(void *p);
-
-//// get time
-void    get_time(long time, t_philosopher *my_philo);
 
 //// ----- utils
 int	ft_atoi(const char	*str);
+
+//	------ philosophing
+int	create_philosophers();
+
+// ------ forking
+int	init_forkes(t_data *data);
+
+//	-------- threading
+int	create_threads(t_data *data);
+
+//	-------- actions
+void	eating(t_data *data, t_philo *philo);
+void	sleeping(t_data *data, t_philo *philo);
+void	thinking(t_philo *philo);
+void	died(t_data *data);
 
 #endif
