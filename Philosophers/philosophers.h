@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/03/23 23:47:00 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/03/24 18:53:57 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_data
 	int				t_eat;
 	int				n_meals;
 	t_philo			*philo;
-	pthread_mutex_t	*forks;
+	pthread_mutex_t		*forks;
 	pthread_mutex_t	lock;
 }					t_data;
 

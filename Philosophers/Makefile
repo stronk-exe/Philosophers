@@ -6,7 +6,7 @@
 #    By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 14:50:46 by ael-asri          #+#    #+#              #
-#    Updated: 2022/03/23 19:10:10 by ael-asri         ###   ########.fr        #
+#    Updated: 2022/03/24 21:27:23 by ael-asri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS =  philosophers.c\
 		threading.c\
 		routine.c\
 		actions.c\
-		philosophers_uils.c
+		philosophers_utils.c\
+		get_time.c
 
 OBJS = $(SRCS:.c=.o)
 
