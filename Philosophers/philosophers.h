@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/03/24 18:53:57 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/03/25 18:51:12 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	init_forkes(t_data *data);
 int	create_threads(t_data *data);
 
 //	-------- actions
-void	eating(t_data *data, t_philo *philo);
-void	sleeping(t_data *data, t_philo *philo);
+void	eating(t_data *data);
+void	sleeping(t_data *data, int i);
 void	thinking(t_philo *philo);
 void	died(t_data *data);
 
