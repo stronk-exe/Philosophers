@@ -27,17 +27,23 @@ void	*routine(void *p)
 //	for(int j=0;j<data->n_philo;j++)
 //		printf("i'm philo %d\n", data->philo[j].id);
 //	while ((cc * 1000) < (time + philo->t_die) /*&& i < philo->meal*/)
+//	while (data-> get_time() < tim)
 	while (1)
 	{
 	//	printf("raw time %ld\n", current_time.tv_sec);
 	//	printf("new time %ld\n", current_time.tv_sec + philo->t_die);
 		i = 1;
 	//	printf("cc %ld\n", cc);
+
 		while (i <= data->n_philo)
 		{
 		//	if (philo->n[i] )
+		//	printf("hii\n");
 			eating(data, i);
+			if ((get_time() - data->philo[i].last_meal) < data->t_die)
+				died(&data->philo[i]);
 			sleeping(data, i);
+			
 			thinking(&data->philo[i]);
 			i++;
 		}

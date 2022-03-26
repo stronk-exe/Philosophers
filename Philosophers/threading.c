@@ -29,6 +29,7 @@ int	create_threads(t_data *data)
 		if (pthread_create(&data->t[i], NULL, &routine, (void*)data) != 0)
 			return (0);
 		data->philo[i].id = i+1;
+		data->philo[i].meals = 0;
 	//	printf("I'm philo %d\n", data->philo[i].id);
 		i++;
 	}

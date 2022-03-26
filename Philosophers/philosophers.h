@@ -22,9 +22,11 @@
 typedef struct s_philo
 {
 	
-	int	id;
-	int	r_fork;
-	int	l_fork;
+	int				id;
+	int				r_fork;
+	int				l_fork;
+	int				meals;
+	unsigned int	last_meal;
 }				t_philo;
 
 typedef struct s_data
@@ -55,10 +57,13 @@ int	init_forkes(t_data *data);
 //	-------- threading
 int	create_threads(t_data *data);
 
+//	-------- time
+unsigned int	get_time();
+
 //	-------- actions
 void	eating(t_data *data, int i);
 void	sleeping(t_data *data, int i);
 void	thinking(t_philo *philo);
-void	died(t_data *data);
+void	died(t_philo *philo);
 
 #endif

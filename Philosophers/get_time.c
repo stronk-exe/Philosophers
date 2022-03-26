@@ -12,17 +12,19 @@
 
 #include "philosophers.h"
 
-int	get_time()
+
+unsigned int	get_time()
 {
 	struct timeval	current_time;
-	int				time;
+//	int				time;
 
-	time = gettimeofday(&current_time, NULL);
-	return (time * 1000);
+	gettimeofday(&current_time, NULL);
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
-
+/*
 void	ft_usleep(int time)
 {
 	while (get_time() < time)
-		usleep(10);
+		continue;
 }
+*/
