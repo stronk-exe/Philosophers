@@ -56,7 +56,7 @@ int	init_forkes(t_data *data);
 int	create_threads(t_data *data);
 
 //	-------- actions
-void	eating(t_data *data);
+void	eating(t_data *data, int i);
 void	sleeping(t_data *data, int i);
 void	thinking(t_philo *philo);
 void	died(t_data *data);

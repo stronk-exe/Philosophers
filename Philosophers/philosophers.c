@@ -28,10 +28,10 @@ int main(int ac, char **av)
 		if (ac == 6)
 			data.n_meals = ft_atoi(av[5]);
 	//	create_philosophers();
-		pthread_mutex_init(&data.lock, NULL);
-		printf("hi\n");
+	//	pthread_mutex_init(&data.lock, NULL);
+	//	printf("hi\n");
 		init_forkes(&data);
-		printf("hi\n");
+	//	printf("hi\n");
 		create_threads(&data);
 	}
 	else

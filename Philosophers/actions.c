@@ -11,48 +11,48 @@
 /* ************************************************************************** */
 
 #include "philosophers.h"
-/*
-void	take_forks(t_data *data)
+
+void	take_forks(t_data *data, int i)
 {
-	pthread_mutex_lock(&data->forks[philo->r_fork]);
-	printf("%d %d has taken a fork\n", data->t_eat, philo->id);
-	pthread_mutex_lock(&data->forks[philo->l_fork]);
-	printf("%d %d has taken a fork\n", data->t_eat, philo->id);
+	pthread_mutex_lock(&data->forks[data->philo[i].r_fork]);
+	printf("%d %d has taken a fork\n", data->t_eat, data->philo[i].id);
+	pthread_mutex_lock(&data->forks[data->philo[i].l_fork]);
+	printf("%d %d has taken a fork\n", data->t_eat, data->philo[i].id);
 }
 
-void	drop_forks(t_data *data, t_philo *philo)
+void	drop_forks(t_data *data, int i)
 {
-	pthread_mutex_unlock(&data->forks[philo->r_fork]);
-	pthread_mutex_unlock(&data->forks[philo->l_fork]);
+	pthread_mutex_unlock(&data->forks[data->philo[i].r_fork]);
+	pthread_mutex_unlock(&data->forks[data->philo[i].l_fork]);
 }
 
-void	eating(t_data *data)
+void	eating(t_data *data, int i)
 {
 	// philo->r_fork = philo->id;
 	// philo->l_fork = philo->id-1;
-	printf("it's me %d\n", (data->n_philo));
-	// if (philo->id % 2 == 0) // if odd
-	// {
-	// 	philo->r_fork = (int)(philo->id % data->n_philo);
-	// 	philo->l_fork = (int)(philo->id);
-	// }
-	// else // if even
-	// {
-	// 	philo->r_fork = (int)(philo->id);
-	// 	philo->l_fork = (int)(philo->id % data->n_philo);
-	// }
+//	printf("it's me %d\n", (data->n_philo));
+	if (data->philo[i].id % 2 == 0) // if odd
+	{
+		data->philo[i].r_fork = (data->philo[i].id % data->n_philo);
+		data->philo[i].l_fork = (data->philo[i].id);
+	}
+	else // if even
+	{
+		data->philo[i].r_fork = data->philo[i].id;
+		data->philo[i].l_fork = (data->philo[i].id % data->n_philo);
+	}
 	// printf("hoooo\n");
 	// pthread_mutex_lock(&data->forks[philo->r_fork]);
 	// printf("%d %d has taken a fork\n", data->t_eat, philo->id);
 	// pthread_mutex_lock(&data->forks[philo->l_fork]);
 	// printf("%d %d has taken a fork\n", data->t_eat, philo->id);
 		
-	take_forks(data);
-	printf("%d %d is eating\n", data->t_eat, data->philo->id);
-	usleep(data->t_eat);
-	drop_forks(data, data->philo);
+	take_forks(data, i);
+	printf("%d %d is eating\n", data->t_eat, data->philo[i].id);
+	usleep(data->t_eat * 1000);
+	drop_forks(data, i);
 }
-*/
+
 void	sleeping(t_data *data, int i)
 {
 	printf("t_sleep %d\n", data->t_sleep);

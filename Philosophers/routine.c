@@ -20,12 +20,12 @@ void	*routine(void *p)
 
 //	i = 0;
 	data = p;
-	printf("n philos %d\n", data->n_philo);
+//	printf("n philos %d\n", data->n_philo);
 //	data = p;
 //	take_forks();
 //	pthread_mutex_lock(&(philo->lock));
-	for(int j=0;j<data->n_philo;j++)
-		printf("i'm philo %d\n", data->philo[j].id);
+//	for(int j=0;j<data->n_philo;j++)
+//		printf("i'm philo %d\n", data->philo[j].id);
 //	while ((cc * 1000) < (time + philo->t_die) /*&& i < philo->meal*/)
 	while (1)
 	{
@@ -33,14 +33,14 @@ void	*routine(void *p)
 	//	printf("new time %ld\n", current_time.tv_sec + philo->t_die);
 		i = 1;
 	//	printf("cc %ld\n", cc);
-	//	while (i < philo->n_philo)
-	//	{
+		while (i <= data->n_philo)
+		{
 		//	if (philo->n[i] )
-		//	eating(data);
+			eating(data, i);
 			sleeping(data, i);
-		//	thinking(philo);
-		//	i++;
-	///	}
+			thinking(&data->philo[i]);
+			i++;
+		}
 	//	sleeping(philo);
 	//	thinking(philo, philo->n[i]);
 	//	i++;
