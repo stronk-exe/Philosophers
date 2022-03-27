@@ -40,10 +40,10 @@ void	*routine(void *p)
 		//	if (philo->n[i] )
 		//	printf("hii\n");
 			eating(data, i);
-			if ((get_time() - data->philo[i].last_meal) < data->t_die)
+			if ((get_time() - data->philo[i].last_meal) >= (long)data->t_die)
 				died(&data->philo[i]);
+			printf("meals %d\n", data->philo[i].meals);
 			sleeping(data, i);
-			
 			thinking(&data->philo[i]);
 			i++;
 		}

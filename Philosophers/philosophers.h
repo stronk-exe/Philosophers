@@ -26,7 +26,7 @@ typedef struct s_philo
 	int				r_fork;
 	int				l_fork;
 	int				meals;
-	unsigned int	last_meal;
+	long			last_meal;
 }				t_philo;
 
 typedef struct s_data
@@ -58,8 +58,8 @@ int	init_forkes(t_data *data);
 int	create_threads(t_data *data);
 
 //	-------- time
-unsigned int	get_time();
-
+long	get_time();
+long	ft_time(void);
 //	-------- actions
 void	eating(t_data *data, int i);
 void	sleeping(t_data *data, int i);

@@ -12,8 +12,17 @@
 
 #include "philosophers.h"
 
+long	ft_time(void)
+{
+	struct timeval	tv;
+	long			res;
 
-unsigned int	get_time()
+	gettimeofday(&tv, NULL);
+	res = 1000 * (size_t)tv.tv_sec + (size_t)tv.tv_usec / 1000;
+	return (res);
+}
+
+long	get_time()
 {
 	struct timeval	current_time;
 //	int				time;

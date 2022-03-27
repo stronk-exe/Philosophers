@@ -30,7 +30,8 @@ int main(int ac, char **av)
 	//	create_philosophers();
 	//	pthread_mutex_init(&data.lock, NULL);
 	//	printf("hi\n");
-		printf("time %d\n", get_time());
+	//	printf("time %ld\n", get_time());
+	//	printf("ft_time %ld\n", ft_time());
 		init_forkes(&data);
 	//	printf("hi\n");
 		create_threads(&data);

@@ -15,10 +15,10 @@
 void	take_forks(t_data *data, int i)
 {
 	pthread_mutex_lock(&data->forks[data->philo[i].r_fork]);
-	printf("%d %d has taken a fork\n", data->t_eat, data->philo[i].id);
+	printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), data->philo[i].id);
 //	printf("holaa\n");
 	pthread_mutex_lock(&data->forks[data->philo[i].l_fork]);	
-	printf("%d %d has taken a fork\n", data->t_eat, data->philo[i].id);
+	printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), data->philo[i].id);
 }
 
 void	drop_forks(t_data *data, int i)
@@ -53,7 +53,7 @@ void	eating(t_data *data, int i)
 //	printf("l fork %d\n", data->philo[i].l_fork);
 
 	take_forks(data, i);
-	printf("%d %d is eating\n", data->t_eat, data->philo[i].id);
+	printf("%ld %d is eating\n", /*data->t_eat*/get_time(), data->philo[i].id);
 	usleep(data->t_eat * 1000);
 	drop_forks(data, i);
 	//printf("hoooy\n");
@@ -63,8 +63,8 @@ void	eating(t_data *data, int i)
 
 void	sleeping(t_data *data, int i)
 {
-	printf("t_sleep %d\n", data->t_sleep);
-	printf("%d %d is sleeping\n", /*data->t_sleep*/get_time(), data->philo[i].id);
+//	printf("t_sleep %d\n", data->t_sleep);
+	printf("%ld %d is sleeping\n", /*data->t_sleep*/get_time(), data->philo[i].id);
 	
 	usleep(data->t_sleep * 1000);
 }
@@ -76,7 +76,7 @@ void	thinking(t_philo *philo)
 
 void	died(t_philo *philo)
 {
-	printf("%d %d died\n", /*data->t_sleep*/get_time(), philo->id);
+	printf("%ld %d died\n", /*data->t_sleep*/get_time(), philo->id);
 	/////////////////////////////////////////
 	exit(1); //// exit is foorbiden a sssiiii
 	/////////////////////////////////////////
