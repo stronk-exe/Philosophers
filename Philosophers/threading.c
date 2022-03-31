@@ -25,7 +25,7 @@ int	create_threads(t_data *data)
 //	printf("t sleep %d\n", data->t_sleep);
 	while (i < data->n_philo)
 	{
-		
+		pthread_mutex_init(&data->philo[i].lock, NULL);	
 		if (pthread_create(&data->t[i], NULL, &routine, (void*)data) != 0)
 			return (0);
 		data->philo[i].id = i+1;
@@ -38,7 +38,7 @@ int	create_threads(t_data *data)
 	{
 		if (pthread_join(data->t[i], NULL) != 0)
 			return (0);
-		printf("I'm philo %d\n", data->philo[i].id);
+	//	printf("I'm philo %d\n", data->philo[i].id);
 		i++;
 	}
 	return (1);

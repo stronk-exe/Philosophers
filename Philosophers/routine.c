@@ -34,24 +34,28 @@ void	*routine(void *p)
 	//	printf("new time %ld\n", current_time.tv_sec + philo->t_die);
 		i = 1;
 	//	printf("cc %ld\n", cc);
-
+		printf("iiii %d\n", i);
+	//	if (i )
 		while (i <= data->n_philo)
 		{
 		//	if (philo->n[i] )
 		//	printf("hii\n");
+			pthread_mutex_lock(&data->philo[i].lock);
 			eating(data, i);
 			if ((get_time() - data->philo[i].last_meal) >= (long)data->t_die)
 				died(&data->philo[i]);
 			printf("meals %d\n", data->philo[i].meals);
 			sleeping(data, i);
 			thinking(&data->philo[i]);
+			pthread_mutex_unlock(&data->philo[i].lock);
 			i++;
 		}
+	//	continue;
 	//	sleeping(philo);
 	//	thinking(philo, philo->n[i]);
 	//	i++;
 	}
 //	died(&data);
 //	pthread_mutex_destroy(philo->fork);
-	return(0);
+	return(NULL);
 }

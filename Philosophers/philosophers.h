@@ -27,6 +27,7 @@ typedef struct s_philo
 	int				l_fork;
 	int				meals;
 	long			last_meal;
+	pthread_mutex_t	lock;
 }				t_philo;
 
 typedef struct s_data
@@ -38,8 +39,8 @@ typedef struct s_data
 	int				t_eat;
 	int				n_meals;
 	t_philo			*philo;
-	pthread_mutex_t		*forks;
-	pthread_mutex_t	lock;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	output;
 }					t_data;
 
 //	-------- routine
