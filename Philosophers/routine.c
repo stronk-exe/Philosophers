@@ -6,12 +6,50 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:13:37 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/03/25 18:56:01 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/03 18:25:20 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+/*
+void	*routine(void *p)
+{
+//	t_philo *philo;
+	t_data	*data;
+	int	i;
 
+//	i = 0;
+	data = p;
+	printf("n philos %d\n", data->n_philo);
+//	data = p;
+//	take_forks();
+//	pthread_mutex_lock(&(philo->lock));
+	for(int j=0;j<data->n_philo;j++)
+		printf("i'm philo %d\n", data->philo[j].id);
+//	while ((cc * 1000) < (time + philo->t_die) *//*&& i < philo->meal*//*)
+	while (1)
+	{
+	//	printf("raw time %ld\n", current_time.tv_sec);
+	//	printf("new time %ld\n", current_time.tv_sec + philo->t_die);
+		i = 1;
+	//	printf("cc %ld\n", cc);
+	//	while (i < philo->n_philo)
+	//	{
+		//	if (philo->n[i] )
+		//	eating(data);
+			sleeping(data, i);
+		//	thinking(philo);
+		//	i++;
+	///	}
+	//	sleeping(philo);
+	//	thinking(philo, philo->n[i]);
+	//	i++;
+	}
+//	died(&data);
+//	pthread_mutex_destroy(philo->fork);
+	return(0);
+}
+*/
 void	*routine(void *p)
 {
 //	t_philo *philo;
@@ -28,26 +66,28 @@ void	*routine(void *p)
 //		printf("i'm philo %d\n", data->philo[j].id);
 //	while ((cc * 1000) < (time + philo->t_die) /*&& i < philo->meal*/)
 //	while (data-> get_time() < tim)
+	pthread_mutex_lock(&data->output);
 	while (1)
 	{
 	//	printf("raw time %ld\n", current_time.tv_sec);
 	//	printf("new time %ld\n", current_time.tv_sec + philo->t_die);
-		i = 1;
+		i = 0;
 	//	printf("cc %ld\n", cc);
-		printf("iiii %d\n", i);
+	//	
 	//	if (i )
-		while (i <= data->n_philo)
+		while (i < data->n_philo)
 		{
 		//	if (philo->n[i] )
 		//	printf("hii\n");
-			pthread_mutex_lock(&data->philo[i].lock);
+		//	pthread_mutex_lock(&data->philo[i].lock);
 			eating(data, i);
-			if ((get_time() - data->philo[i].last_meal) >= (long)data->t_die)
-				died(&data->philo[i]);
-			printf("meals %d\n", data->philo[i].meals);
+		//	if ((get_time() - data->philo[i].last_meal) >= (long)data->t_die)
+		//		died(&data->philo[i]);
+		//	printf("meals %d\n", data->philo[i].meals);
 			sleeping(data, i);
 			thinking(&data->philo[i]);
-			pthread_mutex_unlock(&data->philo[i].lock);
+		//	pthread_mutex_unlock(&data->philo[i].lock);
+			printf("i %d\n", i);
 			i++;
 		}
 	//	continue;
@@ -55,6 +95,7 @@ void	*routine(void *p)
 	//	thinking(philo, philo->n[i]);
 	//	i++;
 	}
+	pthread_mutex_unlock(&data->output);
 //	died(&data);
 //	pthread_mutex_destroy(philo->fork);
 	return(NULL);
