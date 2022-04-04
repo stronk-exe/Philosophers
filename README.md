@@ -22,3 +22,16 @@ Multiple processor system: it’s basically made to keep several processes in th
 The CPU Scheduling simply is the action when the OS will prepare a schedule as of which
 
 process should get the CPU at what time or how much they must wait and staff like that. Btw there are different algorithm or rules the CPU scheduling follows to accomplish this task.
+
+# Threads
+
+Thread : is the unit of execution within a process, and a single process can have one to many threads
+
+![Screen Shot 2022-03-22 at 12.02.17 AM.png]
+(https://s3-us-west-2.amazonaws.com/secure.notion-static.com/17a9b120-5514-42c1-9f2a-a7090fb7b3e3/Screen_Shot_2022-03-22_at_12.02.17_AM.png)
+
+Each thread comprises a thread id, program counter, register set and a stack, and it could be shared with other threads in same process ofc.
+
+Single / Multiple Thread system
+
+As simple as it is, the Traditional - the single - thread process has only one thread, which means the process can perform one task at a time, therefore the multiple thread process can perform tasks as much as its threads.
