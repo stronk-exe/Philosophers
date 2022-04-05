@@ -27,8 +27,7 @@ process should get the CPU at what time or how much they must wait and staff lik
 
 Thread : is the unit of execution within a process, and a single process can have one to many threads
 
-![Screen Shot 2022-03-22 at 12.02.17 AM.png]
-(https://s3-us-west-2.amazonaws.com/secure.notion-static.com/17a9b120-5514-42c1-9f2a-a7090fb7b3e3/Screen_Shot_2022-03-22_at_12.02.17_AM.png)
+<img width="698" alt="Screen Shot 2022-03-22 at 12 02 17 AM" src="https://user-images.githubusercontent.com/94312066/161652722-404a8758-b2da-4d5e-9dd2-32dcee2e4941.png">
 
 Each thread comprises a thread id, program counter, register set and a stack, and it could be shared with other threads in same process ofc.
 
