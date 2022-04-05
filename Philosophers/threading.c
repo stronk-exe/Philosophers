@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/03 18:24:14 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/05 00:38:09 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	create_threads(t_data *data)
 	int	i;
 
 	i = 0;
-	pthread_mutex_init(&data->output, NULL);	
+//	pthread_mutex_init(&data->gg, NULL);	
 	data->t = malloc(sizeof(t_philo) * data->n_philo);
 	if(!data->t)
 		return (0);
@@ -57,7 +57,14 @@ int	create_threads(t_data *data)
 //	printf("t sleep %d\n", data->t_sleep);
 	while (i < data->n_philo)
 	{
+//		pthread_mutex_init(data->philo[i].output, NULL);
+//	printf("hii\n");
 		data->philo[i].id = i+1;
+		data->philo[i].t_eat = data->t_eat;
+		data->philo[i].t_sleep = data->t_sleep;
+		data->philo[i].n = data->n_philo;
+		data->philo[i].l_fork = data->philo[i].id;
+		data->philo[i].r_fork = (data->philo[i].id + 1) % data->philo[i].n;
 		data->philo[i].meals = 0;
 		printf("I'm philo %d\n", data->philo[i].id);
 		i++;
@@ -66,11 +73,12 @@ int	create_threads(t_data *data)
 	while (i < data->n_philo)
 	{
 	//	pthread_mutex_init(&data->philo[i].lock, NULL);	
-		
-		if (pthread_create(&data->t[i], NULL, &routine, (void*)data) != 0)
+		pthread_mutex_lock(&data->gg);
+		if (pthread_create(&data->t[i], NULL, &routine, (void*)&data->philo[i]) != 0)
 			return (0);
-		
-		
+		pthread_mutex_unlock(&data->gg);
+	//	if (pthread_create(&data->t[i], NULL, &routine, (void*)data) != 0)
+	//		return (0);
 		i++;
 	}
 	i = 0;
@@ -78,7 +86,7 @@ int	create_threads(t_data *data)
 	{
 		if (pthread_join(data->t[i], NULL) != 0)
 			return (0);
-		printf("I'm returned philo %d\n", data->philo[i].id);
+	//	printf("I'm returned philo %d\n", data->philo[i].id);
 		i++;
 	}
 	return (1);

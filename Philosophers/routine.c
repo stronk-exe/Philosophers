@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:13:37 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/03 18:25:20 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/05 00:33:59 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,22 @@ void	*routine(void *p)
 */
 void	*routine(void *p)
 {
-//	t_philo *philo;
-	t_data	*data;
+	t_philo *philo;
+//	t_data	*data;
 	int	i;
 
+	philo = p;
 //	i = 0;
-	data = p;
+//	data = p;
 //	printf("n philos %d\n", data->n_philo);
 //	data = p;
 //	take_forks();
-//	pthread_mutex_lock(&(philo->lock));
+//	pthread_mutex_lock(&data->philo->lock);
 //	for(int j=0;j<data->n_philo;j++)
 //		printf("i'm philo %d\n", data->philo[j].id);
 //	while ((cc * 1000) < (time + philo->t_die) /*&& i < philo->meal*/)
 //	while (data-> get_time() < tim)
-	pthread_mutex_lock(&data->output);
+	pthread_mutex_lock(&philo->lock);
 	while (1)
 	{
 	//	printf("raw time %ld\n", current_time.tv_sec);
@@ -75,19 +76,19 @@ void	*routine(void *p)
 	//	printf("cc %ld\n", cc);
 	//	
 	//	if (i )
-		while (i < data->n_philo)
+		while (i < philo->n)
 		{
 		//	if (philo->n[i] )
 		//	printf("hii\n");
-		//	pthread_mutex_lock(&data->philo[i].lock);
-			eating(data, i);
-		//	if ((get_time() - data->philo[i].last_meal) >= (long)data->t_die)
-		//		died(&data->philo[i]);
+		//	pthread_mutex_lock(&philo->lock);
+			eating(philo);
+			if ((get_time() - philo->last_meal) >= (long)philo->t_die)
+				died(philo);
 		//	printf("meals %d\n", data->philo[i].meals);
-			sleeping(data, i);
-			thinking(&data->philo[i]);
-		//	pthread_mutex_unlock(&data->philo[i].lock);
-			printf("i %d\n", i);
+			sleeping(philo);
+			thinking(philo);
+		//	pthread_mutex_unlock(&philo->lock);
+		//	printf("i %d\n", i);
 			i++;
 		}
 	//	continue;
@@ -95,8 +96,8 @@ void	*routine(void *p)
 	//	thinking(philo, philo->n[i]);
 	//	i++;
 	}
-	pthread_mutex_unlock(&data->output);
+	pthread_mutex_unlock(&philo->lock);
 //	died(&data);
-//	pthread_mutex_destroy(philo->fork);
+//	pthread_mutex_destroy(data->philo->fork);
 	return(NULL);
 }
