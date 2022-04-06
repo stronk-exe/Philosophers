@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/04 17:43:50 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:35:01 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ int main(int ac, char **av)
 		data.t_sleep = ft_atoi(av[4]);
 		if (ac == 6)
 			data.n_meals = ft_atoi(av[5]);
-	//	create_philosophers();
+		if (!create_philosophers(&data))
+			return (0);
 	//	pthread_mutex_init(&data.lock, NULL);
 	//	printf("hi\n");
 	//	printf("time %ld\n", get_time());
 	//	printf("ft_time %ld\n", ft_time());
 		init_forkes(&data);
-	//	printf("hi\n");
 		create_threads(&data);
 	}
 	else

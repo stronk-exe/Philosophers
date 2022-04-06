@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/05 00:34:36 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:33:49 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef struct s_philo
 	int				t_eat;
 	//////////////////
 	int				id;
-	int				r_fork;
-	int				l_fork;
+	pthread_mutex_t				r_fork;
+	pthread_mutex_t				l_fork;
 	int				meals;
 	long			last_meal;
 	pthread_mutex_t	lock;
-	pthread_mutex_t	*output;
+	pthread_mutex_t	output;
 }				t_philo;
 
 typedef struct s_data
@@ -46,6 +46,7 @@ typedef struct s_data
 	int				n_meals;
 	t_philo			*philo;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	lock;
 	pthread_mutex_t	gg;
 }					t_data;
 
@@ -56,7 +57,7 @@ void	*routine(void *p);
 int	ft_atoi(const char	*str);
 
 //	------ philosophing
-int	create_philosophers();
+int	create_philosophers(t_data *data);
 
 // ------ forking
 int	init_forkes(t_data *data);
@@ -68,6 +69,7 @@ int	create_threads(t_data *data);
 long	get_time();
 long	ft_time(void);
 //	-------- actions
+void	take_forks(t_philo *philo);
 void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
