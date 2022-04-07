@@ -69,8 +69,8 @@ void	*routine(void *p)
 			take_forks(philo);
 			eating(philo);
 		//	pthread_mutex_unlock(&philo->output);
-			if ((get_time() - philo->last_meal) >= (long)philo->t_die)
-				died(philo);
+		//	if ((get_time() - philo->last_meal) >= (long)philo->t_die)
+		//		died(philo);
 		//	if (philo->meals >= 5)
 		//		died(philo);
 		//	printf("meals %d\n", data->philo[i].meals);

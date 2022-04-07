@@ -28,8 +28,8 @@ typedef struct s_philo
 	int				t_eat;
 	//////////////////
 	int				id;
-	pthread_mutex_t				r_fork;
-	pthread_mutex_t				l_fork;
+	pthread_mutex_t				*r_fork;
+	pthread_mutex_t				*l_fork;
 	int				meals;
 	long			last_meal;
 	pthread_mutex_t	lock;

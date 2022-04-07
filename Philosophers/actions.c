@@ -56,20 +56,33 @@ void	eating(t_data *data)
 
 void	take_forks(t_philo *philo)
 {
-	pthread_mutex_lock(&philo->l_fork);
-	pthread_mutex_lock(&philo->r_fork);
-	pthread_mutex_lock(&philo->lock);
-	printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
-	printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
-	pthread_mutex_unlock(&philo->lock);
+	if ((philo->id % 2 == 0) && (philo->id+1 != philo->n))
+	{
+		pthread_mutex_lock(philo->r_fork);
+		pthread_mutex_lock(philo->l_fork);
+		pthread_mutex_lock(&philo->lock);
+		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
+		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
+		pthread_mutex_unlock(&philo->lock);
+	}
+	else
+	{
+		pthread_mutex_lock(philo->l_fork);
+		pthread_mutex_lock(philo->r_fork);
+		pthread_mutex_lock(&philo->lock);
+		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
+		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
+		pthread_mutex_unlock(&philo->lock);
+	}
+	
 }
-
+/*
 void	drop_forks(t_philo *philo)
 {
 	pthread_mutex_unlock(&philo->r_fork);
 	pthread_mutex_unlock(&philo->l_fork);
 }
-
+*/
 void	eating(t_philo *philo)
 {
 	
@@ -108,16 +121,17 @@ void	eating(t_philo *philo)
 	pthread_mutex_lock(&philo->lock);
 	printf("%ld %d is eating\n", get_time(), philo->id);
 	pthread_mutex_unlock(&philo->lock);
-	usleep(philo->t_eat * 1000);
+	
 ///////////////////////////////////////
 
 //	drop_forks(philo);
 	//printf("hoooy\n");
 	philo->meals++;
 	philo->last_meal = get_time();
+	usleep(philo->t_eat * 1000);
 //	pthread_mutex_unlock(&data->philo[i].lock);
-	pthread_mutex_unlock(&philo->l_fork);
-	pthread_mutex_unlock(&philo->r_fork);
+	pthread_mutex_unlock(philo->l_fork);
+	pthread_mutex_unlock(philo->r_fork);
 	
 	
 //	

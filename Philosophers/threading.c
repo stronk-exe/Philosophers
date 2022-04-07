@@ -55,31 +55,31 @@ int	create_threads(t_data *data)
 	
 //	if (pthread_mutex_init(&data->gg, NULL) != 0)
 //		return (0);
-	if (pthread_mutex_init(&data->lock, NULL) != 0)
-			return (0);
+	// if (pthread_mutex_init(&data->lock, NULL) != 0)
+	// 		return (0);
 //	printf("t sleep %d\n", data->t_sleep);
 //	pthread_mutex_init(&data->philo[i].lock, NULL);
 //printf("hii\n");
 //	printf("%d\n", data->n_philo);
-	i = 0;
-	while (i < data->n_philo)
-	{
-		data->philo[i].id = i+1;
-		data->philo[i].t_eat = data->t_eat;
-		data->philo[i].t_sleep = data->t_sleep;
-		data->philo[i].n = data->n_philo;
-		data->philo[i].l_fork = data->forks[data->philo[i].id];
-		data->philo[i].r_fork = data->forks[(data->philo[i].id + 1) % data->n_philo];
-		data->philo[i].meals = 0;
-		if (pthread_mutex_init(&data->philo[i].lock, NULL) != 0)
-			return (0);
-	//	printf("%d\n", data->philo[i].l_fork);
-	//	printf("%d\n", data->philo[i].r_fork);
-	//	if (pthread_mutex_init(&data->philo[i].output, NULL) != 0)
-	//		return (0);
-	//	printf("I'm philo %d\n", data->philo[i].id);
-		i++;
-	}
+//	i = 0;
+	// while (i < data->n_philo)
+	// {
+	// 	data->philo[i].id = i+1;
+	// 	data->philo[i].t_eat = data->t_eat;
+	// 	data->philo[i].t_sleep = data->t_sleep;
+	// 	data->philo[i].n = data->n_philo;
+	// 	data->philo[i].l_fork = data->forks[data->philo[i].id];
+	// 	data->philo[i].r_fork = data->forks[(data->philo[i].id + 1) % data->n_philo];
+	// 	data->philo[i].meals = 0;
+	// //	if (pthread_mutex_init(&data->philo[i].lock, NULL) != 0)
+	// //		return (0);
+	// //	printf("%d\n", data->philo[i].l_fork);
+	// //	printf("%d\n", data->philo[i].r_fork);
+	// //	if (pthread_mutex_init(&data->philo[i].output, NULL) != 0)
+	// //		return (0);
+	// //	printf("I'm philo %d\n", data->philo[i].id);
+	// 	i++;
+	// }
 	i = 0;
 	while (i < data->n_philo)
 	{
@@ -87,6 +87,7 @@ int	create_threads(t_data *data)
 	//	pthread_mutex_lock(&data->gg);
 		if (pthread_create(&data->t[i], NULL, &routine, (void*)&data->philo[i]) != 0)
 			return (0);
+	//	printf("hii\n");
 	//	pthread_mutex_unlock(&data->gg);
 	//	if (pthread_create(&data->t[i], NULL, &routine, (void*)data) != 0)
 	//		return (0);

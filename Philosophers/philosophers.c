@@ -54,13 +54,17 @@ int main(int ac, char **av)
 		data.t_sleep = ft_atoi(av[4]);
 		if (ac == 6)
 			data.n_meals = ft_atoi(av[5]);
+		if (pthread_mutex_init(&data.lock, NULL) != 0)
+			return (0);
+		init_forkes(&data);
 		if (!create_philosophers(&data))
 			return (0);
 	//	pthread_mutex_init(&data.lock, NULL);
 	//	printf("hi\n");
 	//	printf("time %ld\n", get_time());
 	//	printf("ft_time %ld\n", ft_time());
-		init_forkes(&data);
+		
+		
 		create_threads(&data);
 	}
 	else
