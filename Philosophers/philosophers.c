@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/06 17:35:01 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/07 18:01:25 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,13 @@ int main(int ac, char **av)
 		init_forkes(&data);
 		if (!create_philosophers(&data))
 			return (0);
+		create_threads(&data);
 	//	pthread_mutex_init(&data.lock, NULL);
 	//	printf("hi\n");
 	//	printf("time %ld\n", get_time());
 	//	printf("ft_time %ld\n", ft_time());
 		
 		
-		create_threads(&data);
 	}
 	else
 		write(2, "error\n", 6);

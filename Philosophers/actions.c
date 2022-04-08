@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/06 02:09:41 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:09:46 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	eating(t_data *data)
 
 void	take_forks(t_philo *philo)
 {
-	if ((philo->id % 2 == 0) && (philo->id+1 != philo->n))
+	if ((philo->id % 2 == 0) && (philo->id + 1 != philo->n))
 	{
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(philo->l_fork);
@@ -121,14 +121,14 @@ void	eating(t_philo *philo)
 	pthread_mutex_lock(&philo->lock);
 	printf("%ld %d is eating\n", get_time(), philo->id);
 	pthread_mutex_unlock(&philo->lock);
-	
+	philo->meals++;
+	philo->last_meal = get_time();
+	usleep(philo->t_eat * 1000);
 ///////////////////////////////////////
 
 //	drop_forks(philo);
 	//printf("hoooy\n");
-	philo->meals++;
-	philo->last_meal = get_time();
-	usleep(philo->t_eat * 1000);
+	
 //	pthread_mutex_unlock(&data->philo[i].lock);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
@@ -160,6 +160,6 @@ void	died(t_philo *philo)
 	printf("%ld %d died\n", /*data->t_sleep*/get_time(), philo->id);
 	pthread_mutex_unlock(&philo->lock);
 	/////////////////////////////////////////
-	exit(1); //// exit is foorbiden a sssiiii
+//	exit(1); //// exit is foorbiden a sssiiii
 	/////////////////////////////////////////
 }

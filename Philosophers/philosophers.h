@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/06 17:33:49 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/08 00:40:33 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,15 @@ typedef struct s_philo
 	int				t_eat;
 	//////////////////
 	int				id;
-	pthread_mutex_t				*r_fork;
-	pthread_mutex_t				*l_fork;
+	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*l_fork;
 	int				meals;
 	long			last_meal;
 	pthread_mutex_t	lock;
 	pthread_mutex_t	output;
-}				t_philo;
+	int				is_dead;
+	int				start_time;
+}					t_philo;
 
 typedef struct s_data
 {
@@ -74,5 +76,6 @@ void	eating(t_philo *philo);
 void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 void	died(t_philo *philo);
+void	check_dead(t_philo *philo);
 
 #endif
