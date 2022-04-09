@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/08 00:09:46 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/08 17:07:55 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,13 +56,14 @@ void	eating(t_data *data)
 
 void	take_forks(t_philo *philo)
 {
-	if ((philo->id % 2 == 0) && (philo->id + 1 != philo->n))
+	if ((philo->id) % 2 == 0 && philo->id != philo->n)
 	{
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(philo->l_fork);
 		pthread_mutex_lock(&philo->lock);
-		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
-		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
+		int	time = get_time() - philo->start_time;
+		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
+		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
 		pthread_mutex_unlock(&philo->lock);
 	}
 	else
@@ -70,8 +71,9 @@ void	take_forks(t_philo *philo)
 		pthread_mutex_lock(philo->l_fork);
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(&philo->lock);
-		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
-		printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
+		int	time = get_time() - philo->start_time;
+		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
+		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
 		pthread_mutex_unlock(&philo->lock);
 	}
 	
@@ -118,8 +120,11 @@ void	eating(t_philo *philo)
 	// printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
 	// printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
 /////////////////////////////////////////
+
 	pthread_mutex_lock(&philo->lock);
-	printf("%ld %d is eating\n", get_time(), philo->id);
+	int	gg = get_time() - philo->start_time;
+//	printf("timingoo %d\n", gg);
+	printf("%d %d is eating\n", gg, philo->id);
 	pthread_mutex_unlock(&philo->lock);
 	philo->meals++;
 	philo->last_meal = get_time();
@@ -141,7 +146,8 @@ void	sleeping(t_philo *philo)
 {
 //	printf("t_sleep %d\n", data->t_sleep);
 	pthread_mutex_lock(&philo->lock);
-	printf("%ld %d is sleeping\n", get_time(), philo->id);
+	int	time = get_time() - philo->start_time;
+	printf("%d %d is sleeping\n", time, philo->id);
 	pthread_mutex_unlock(&philo->lock);
 	usleep(philo->t_sleep * 1000);
 	
@@ -157,7 +163,8 @@ void	thinking(t_philo *philo)
 void	died(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->lock);
-	printf("%ld %d died\n", /*data->t_sleep*/get_time(), philo->id);
+	int	time = get_time() - philo->start_time;
+	printf("%d %d died\n", /*data->t_sleep*/time, philo->id);
 	pthread_mutex_unlock(&philo->lock);
 	/////////////////////////////////////////
 //	exit(1); //// exit is foorbiden a sssiiii

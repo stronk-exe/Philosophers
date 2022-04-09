@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/08 00:40:33 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/08 16:25:40 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_philo
 {
 	//////////////////
 	int				n;
-	long			t_die;
+	int				t_die;
 	int				t_sleep;
 	int				t_eat;
 	//////////////////
@@ -42,7 +42,7 @@ typedef struct s_data
 {
 	pthread_t		*t;
 	int				n_philo;
-	long			t_die;
+	int				t_die;
 	int				t_sleep;
 	int				t_eat;
 	int				n_meals;

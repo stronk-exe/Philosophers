@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/07 18:01:25 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/08 16:11:13 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ int main(int ac, char **av)
 	//	printf("hi\n");
 	//	printf("time %ld\n", get_time());
 	//	printf("ft_time %ld\n", ft_time());
-		
-		
 	}
 	else
 		write(2, "error\n", 6);

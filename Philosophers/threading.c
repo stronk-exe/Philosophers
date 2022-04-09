@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/08 00:42:40 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/08 20:08:58 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,16 @@ int	create_threads(t_data *data)
 */
 void	check_dead(t_philo *philo)
 {
-	if (philo->meals >= 5/* || get_time() - philo->start_time >= philo->t_die*/)
+	// printf("tdie %d\n", philo->t_die);
+	// printf("last meal %ld\n", philo->last_meal);
+	// printf("timing %ld\n", get_time()-philo->last_meal);
+	
+	
+	long	timing;
+
+	timing = get_time()-philo->last_meal;
+	if (timing < philo->t_die)
+//	if (philo->meals >= 5 || philo->last_meal + philo->t_die >= get_time()/* || get_time() - philo->start_time >= philo->t_die*/)
 	{
 		philo->is_dead = 1;
 		died(philo);
