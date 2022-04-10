@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/08 17:07:55 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/10 00:27:28 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,9 @@ void	eating(t_philo *philo)
 	printf("%d %d is eating\n", gg, philo->id);
 	pthread_mutex_unlock(&philo->lock);
 	philo->meals++;
+	//------------------
+//	printf("************i'm %d my n meals %d\n", philo->id, philo->meals);
+	//------------------
 	philo->last_meal = get_time();
 	usleep(philo->t_eat * 1000);
 ///////////////////////////////////////
@@ -167,6 +170,6 @@ void	died(t_philo *philo)
 	printf("%d %d died\n", /*data->t_sleep*/time, philo->id);
 	pthread_mutex_unlock(&philo->lock);
 	/////////////////////////////////////////
-//	exit(1); //// exit is foorbiden a sssiiii
+//	exit(1); //// exit is forbiden a sssiiii
 	/////////////////////////////////////////
 }
