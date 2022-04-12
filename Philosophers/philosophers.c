@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/10 00:28:41 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/12 01:33:59 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int main(int ac, char **av)
 		if (ac == 6)
 		{
 			data.n_meals = ft_atoi(av[5]);
-			if (data.n_meals <= 0)
+			if (data.n_meals < 0)
 				return (throw_error());
 			data.nm_ishere = 1;
 		}

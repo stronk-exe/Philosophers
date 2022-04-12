@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:08:07 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/11 01:29:17 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/12 01:31:38 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ int	create_philosophers(t_data *data)
 		return (0);
 	i = 0;
 //	printf("t_die isss %d\n", data->t_die);
+	
 	while (i < data->n_philo)
 	{
-		data->philo[i].pid = fork();
-		if (!data->philo[i].pid)
+		data->pid[i] = fork();
+		printf("hello\n");
+		if (!data->pid)
 		{
 			data->philo[i].id = i+1;
 			data->philo[i].t_eat = data->t_eat;

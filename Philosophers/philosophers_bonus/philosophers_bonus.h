@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:09:09 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/11 01:28:01 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/12 01:30:29 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "unistd.h"
 # include "stdio.h"
 # include "stdlib.h"
+# include "pthread.h"
+# include "fcntl.h"
 # include "semaphore.h"
 # include "sys/time.h"
 
@@ -43,6 +45,7 @@ typedef struct s_philo
 typedef struct s_data
 {
 	pthread_t		*t;
+	pid_t			*pid;
 	int				n_philo;
 	int				t_die;
 	int				t_sleep;
@@ -51,7 +54,7 @@ typedef struct s_data
 	int				nm_ishere;
 	t_philo			*philo;
 	sem_t	*forks;
-	sem_t	lock;
+	sem_t	*lock;
 	pthread_mutex_t	gg;
 }					t_data;
 
@@ -65,7 +68,7 @@ int	ft_atoi(const char	*str);
 int	create_philosophers(t_data *data);
 
 // ------ forking
-int	init_forkes(t_data *data);
+int	init_processes(t_data *data);
 
 //	-------- processing
 int	create_processes(t_data *data);

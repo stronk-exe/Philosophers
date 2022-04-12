@@ -6,7 +6,7 @@
 #    By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 14:50:46 by ael-asri          #+#    #+#              #
-#    Updated: 2022/04/11 01:20:59 by ael-asri         ###   ########.fr        #
+#    Updated: 2022/04/11 22:51:39 by ael-asri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ BSRCS = philosophers_bonus/actions_bonus.c\
 		philosophers_bonus/processing_bonus.c\
 		philosophers_bonus/forking_bonus.c\
 		philosophers_bonus/routine_bonus.c\
-		get_time.c
+		get_time.c\
+		philosophers_utils.c\
+		ending.c
 
 OBJS = $(SRCS:.c=.o)
 

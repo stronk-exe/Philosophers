@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:08:12 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/11 00:25:30 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/11 22:55:27 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*routine(void *p)
 	while (1)
 	{
 	//	take_forks(philo);
-	//	eating(philo);
+		eating(philo);
 		sleeping(philo);
 		thinking(philo);
 	}

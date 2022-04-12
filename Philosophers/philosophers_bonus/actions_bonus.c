@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:07:58 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/11 00:30:53 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/11 22:57:36 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,14 @@ void	take_forks(t_philo *philo)
 	}
 	
 }
-
+*/
 void	eating(t_philo *philo)
 {
 //	pthread_mutex_lock(&philo->lock);
-	sem_open(philo->lock,0);
+	sem_wait(&philo->lock);
 	int	gg = get_time() - philo->start_time;
 	printf("%d %d is eating\n", gg, philo->id);
-	sem_close(philo->lock);
+	sem_post(&philo->lock);
 //	pthread_mutex_unlock(&philo->lock);
 	philo->meals++;
 	//------------------
@@ -59,12 +59,12 @@ void	eating(t_philo *philo)
 	//------------------
 	philo->last_meal = get_time();
 	usleep(philo->t_eat * 1000);
-	sem_close(philo->l_fork);
-	sem_close(philo->r_fork);
+//	sem_close(philo->l_fork);
+//	sem_close(philo->r_fork);
 //	pthread_mutex_unlock(philo->l_fork);
 //	pthread_mutex_unlock(philo->r_fork);
 }
-*/
+
 void	sleeping(t_philo *philo)
 {
 //	pthread_mutex_lock(&philo->lock);
@@ -84,14 +84,13 @@ void	thinking(t_philo *philo)
 	sem_post(&philo->lock);
 //	pthread_mutex_unlock(&philo->lock);
 }
-/*
+
 void	died(t_philo *philo)
 {
 //	pthread_mutex_lock(&philo->lock);
-	sem_open(philo->lock,0);
+	sem_wait(&philo->lock);
 	int	time = get_time() - philo->start_time;
 	printf("%d %d died\n", time, philo->id);
-	sem_close(philo->lock);
-	pthread_mutex_unlock(&philo->lock);
+	sem_post(&philo->lock);
+//	pthread_mutex_unlock(&philo->lock);
 }
-*/
