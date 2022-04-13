@@ -6,12 +6,12 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:07:58 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/11 22:57:36 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/13 02:16:35 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-/*
+
 void	take_forks(t_philo *philo)
 {
 	if ((philo->id) % 2 == 0 && philo->id != philo->n)
@@ -19,32 +19,32 @@ void	take_forks(t_philo *philo)
 		// pthread_mutex_lock(philo->r_fork);
 		// pthread_mutex_lock(philo->l_fork);
 		// pthread_mutex_lock(&philo->lock);
-		sem_open(philo->r_fork,0);
-		sem_open(philo->l_fork,0);
-		sem_open(philo->lock,0);
+		sem_wait(philo->r_fork);
+		sem_wait(philo->l_fork);
+		sem_wait(&philo->lock);
 		int	time = get_time() - philo->start_time;
 		printf("%d %d has taken a fork\n", time, philo->id);
 		printf("%d %d has taken a fork\n", time, philo->id);
 	//	pthread_mutex_unlock(&philo->lock);
-		sem_close(philo->lock);
+		sem_post(&philo->lock);
 	}
 	else
 	{
 		// pthread_mutex_lock(philo->l_fork);
 		// pthread_mutex_lock(philo->r_fork);
 		// pthread_mutex_lock(&philo->lock);
-		sem_open(philo->r_fork,0);
-		sem_open(philo->l_fork,0);
-		sem_open(philo->lock,0);
+		sem_wait(philo->l_fork);
+		sem_wait(philo->r_fork);
+		sem_wait(&philo->lock);
 		int	time = get_time() - philo->start_time;
 		printf("%d %d has taken a fork\n", time, philo->id);
 		printf("%d %d has taken a fork\n", time, philo->id);
 	//	pthread_mutex_unlock(&philo->lock);
-		sem_close(philo->lock);
+		sem_post(&philo->lock);
 	}
 	
 }
-*/
+
 void	eating(t_philo *philo)
 {
 //	pthread_mutex_lock(&philo->lock);
@@ -59,6 +59,8 @@ void	eating(t_philo *philo)
 	//------------------
 	philo->last_meal = get_time();
 	usleep(philo->t_eat * 1000);
+	sem_post(philo->l_fork);
+	sem_post(philo->r_fork);
 //	sem_close(philo->l_fork);
 //	sem_close(philo->r_fork);
 //	pthread_mutex_unlock(philo->l_fork);

@@ -6,11 +6,27 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:08:07 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/12 01:31:38 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/13 02:22:00 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
+
+void	gg(t_philo *philo)
+{
+//	t_philo *philo;
+//	t_data	*data=NULL;
+//	int	i;
+
+//	philo = p;
+//	while (1)
+//	{
+		take_forks(philo);
+		eating(philo);
+		sleeping(philo);
+		thinking(philo);
+//	}
+}
 
 int	create_philosophers(t_data *data)
 {
@@ -22,12 +38,12 @@ int	create_philosophers(t_data *data)
 		return (0);
 	i = 0;
 //	printf("t_die isss %d\n", data->t_die);
-	
+	data->forks = sem_open("forks", O_CREAT, 0666, data->n_philo);
 	while (i < data->n_philo)
 	{
 		data->pid[i] = fork();
-		printf("hello\n");
-		if (!data->pid)
+	//	printf("hello\n");
+		if (!data->pid[i])
 		{
 			data->philo[i].id = i+1;
 			data->philo[i].t_eat = data->t_eat;
@@ -42,8 +58,31 @@ int	create_philosophers(t_data *data)
 			data->philo[i].start_time = get_time();
 			if (data->nm_ishere)
 				data->philo[i].n_meals = data->n_meals;
+		//	gg(&data->philo[i]);
+		// 	take_forks(&data->philo[i]);
+		// //	printf("I'm philo %d\n", data->philo[i].id);
+		// 	eating(&data->philo[i]);
+		// 	sleeping(&data->philo[i]);
+		// 	thinking(&data->philo[i]);
+			
 		}
+		else
+			waitpid(data->pid[i],NULL,0);
 		i++;
 	}
+	i = 0;
+	while (1)
+	{
+		i = 0;
+		while (i < data->n_philo)
+		{
+			take_forks(&data->philo[i]);
+			eating(&data->philo[i]);
+			sleeping(&data->philo[i]);
+			thinking(&data->philo[i]);
+			i++;
+		}
+	}
+	exit(1);
 	return (1);
 }

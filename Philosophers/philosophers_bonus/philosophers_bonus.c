@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:08:03 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/12 01:26:49 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/12 18:24:55 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,10 @@ int main(int ac, char **av)
 			return (0);
 		//	return (throw_error());
 		data.lock = sem_open("lock", O_CREAT, 0666, 1);
+		
 	//	if (pthread_mutex_init(&data.lock, NULL) != 0)
 	//		return (0);
-		init_processes(&data);
+	//	init_processes(&data);
 		if (!create_philosophers(&data))
 			return (0);
 		if (!create_processes(&data))

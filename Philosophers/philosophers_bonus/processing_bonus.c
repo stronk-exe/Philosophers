@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 14:58:02 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/11 00:36:53 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/12 23:52:28 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_deadd(t_data *data)
 		{
 			data->philo[i].is_dead = 1;
 			died(&data->philo[i]);
-			sf_salina(data);
+		//	sf_salina(data);
 		//	system("leaks philo");
 			printf("hey from ddd---------------------\n");
 			return (0);
@@ -55,7 +55,7 @@ int	check_deadd(t_data *data)
 //	if (philo->meals >= 5 || philo->last_meal + philo->t_die >= get_time()/* || get_time() - philo->start_time >= philo->t_die*/)
 		{
 			data->philo[i].is_dead = 1;
-			sf_salina(data);
+		//	sf_salina(data);
 		//	system("leaks philo");
 			printf("we done here---------------------\n");
 			return (0);
@@ -74,11 +74,14 @@ int	create_processes(t_data *data)
 	data->t = malloc(sizeof(pthread_t) * data->n_philo);
 	if(!data->t)
 		return (0);
+//	data->forks = sem_open("forks", O_CREAT, 0666, data->n_philo);
 	i = 0;
-	while (i < data->n_philo)
+/*	while (i < data->n_philo)
 	{
-		if (pthread_create(&data->t[i], NULL, &routine, (void*)&data->philo[i]) != 0)
-			return (0);
+	//	routine((void*)data->philo[i]);
+		printf("I'm philo %d\n", data->philo[i].id);
+		// if (pthread_create(&data->t[i], NULL, &routine, (void*)&data->philo[i]) != 0)
+		// 	return (0);
 		i++;
 	}
 	while (1)
@@ -87,14 +90,14 @@ int	create_processes(t_data *data)
 			return (0);
 		//	exit(1);
 		//	break;
-	}
+	}*/
 	i = 0;
-	while (i < data->n_philo)
-	{
-		if (pthread_join(data->t[i], NULL) != 0)
-			return (0);
-	//	printf("I'm returned philo %d\n", data->philo[i].id);
-		i++;
-	}
-	return (1);
+	// while (i < data->n_philo)
+	// {
+	// 	if (pthread_join(data->t[i], NULL) != 0)
+	// 		return (0);
+	// //	printf("I'm returned philo %d\n", data->philo[i].id);
+	// 	i++;
+	// }
+	 return (1);
 }
