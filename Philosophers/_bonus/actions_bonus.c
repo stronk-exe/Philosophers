@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
+/*
 void	take_forks(t_philo *philo)
 {
 	if ((philo->id) % 2 == 0 && philo->id != philo->n)
@@ -49,23 +49,23 @@ void	eating(t_philo *philo)
 	sem_post(philo->l_fork);
 	sem_post(philo->r_fork);
 }
-
-void	sleeping(t_philo *philo)
+*/
+void	sleeping(t_data *data)
 {
-	sem_wait(&philo->lock);
-	int	time = get_time() - philo->start_time;
-	printf("%d %d is sleeping\n", time, philo->id);
-	sem_post(&philo->lock);
-	usleep(philo->t_sleep * 1000);
+	sem_wait(data->lock);
+	int	time = get_time() /*- philo->start_time*/;
+	printf("%d %d is sleeping\n", time, data->philo.id);
+	sem_post(data->lock);
+	usleep(/*philo->t_sleep * */ 1000);
 }
 
-void	thinking(t_philo *philo)
+void	thinking(t_data *data)
 {
-	sem_wait(&philo->lock);
-	printf("%d is thinking\n", philo->id);
-	sem_post(&philo->lock);
+	sem_wait(data->lock);
+	printf("%d is thinking\n", data->philo.id);
+	sem_post(data->lock);
 }
-
+/*
 void	died(t_philo *philo)
 {
 	sem_wait(&philo->lock);
@@ -73,3 +73,4 @@ void	died(t_philo *philo)
 	printf("%d %d died\n", time, philo->id);
 	sem_post(&philo->lock);
 }
+*/

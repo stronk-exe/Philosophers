@@ -45,6 +45,47 @@ int	throw_error(void)
 	return(0);
 }
 
+
+
+void	*chh(void *p)
+{
+	t_philo *philo;
+//	t_data	*data=NULL;
+//	int	i;
+
+	philo = p;
+	printf("tfo %d\n", philo->id);	
+	return(NULL);
+}
+
+int ft_holoa(t_data *data)
+{
+	int	i=0;
+
+    while (i < data->n_philo)
+	{
+		data->philo.id = i+1;
+		data->pid[i] = fork();
+		if (data->pid[i] == 0)
+		{
+			
+            if (pthread_create(&data->t, NULL, &chh, (void*)&data) != 0)
+				return (0);
+			pthread_join(data->t, NULL);
+		//    pthread_detach(data->t);
+		//	printf("hii\n");
+		//	if (pthread_join(data->philo[i].t, NULL) != 0)
+            routine(data);
+		//	ft_init_philo(args);
+		//	ft_routine(args);
+		}
+		i++;
+	}
+	return(1);
+}
+
+
+
 int main(int ac, char **av)
 {
 	t_data data;
@@ -69,11 +110,13 @@ int main(int ac, char **av)
 			return (throw_error());
 	//	if (pthread_mutex_init(&data.lock, NULL) != 0)
 	//		return (0);
-		init_semaphores(&data);
 		
-		if (!create_philosophers(&data))
-			return (0);
-	//	printf("hii\n");
+		init_semaphores(&data);
+	//	if (!create_philosophers(&data))
+	//		return (0);
+	
+		ft_holoa(&data);
+		
 	//	if (!create_threads(&data))
 	//		return (0);
 	//	sf_salina(&data);

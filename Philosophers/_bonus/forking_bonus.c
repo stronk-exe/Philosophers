@@ -57,6 +57,9 @@ int	init_semaphores(t_data *data)
 	data->pid = malloc(sizeof(pid_t) * data->n_philo);
 	if(!data->pid)
 		return (0);
+//	data->philo = malloc(sizeof(t_philo) * data->n_philo);
+//	if(!data->philo)
+//		return (0);
 /*	int	i;
 
 	i = 0;

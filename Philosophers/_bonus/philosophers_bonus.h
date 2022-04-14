@@ -18,6 +18,8 @@
 # include "stdlib.h"
 # include "pthread.h"
 # include "sys/time.h"
+# include "sys/wait.h"
+# include "sys/types.h"
 # include "semaphore.h"
 # include "fcntl.h"
 
@@ -39,26 +41,26 @@ typedef struct s_philo
 //	pthread_mutex_t	output;
 	int				is_dead;
 	int				start_time;
-	pthread_t		t;
+	
 }					t_philo;
 
 typedef struct s_data
 {
-	
+	pthread_t		t;
 	int				n_philo;
 	int				t_die;
 	int				t_sleep;
 	int				t_eat;
 	int				n_meals;
 	int				nm_ishere;
-	t_philo			*philo;
+	t_philo			philo;
 	pid_t	*pid;
 	sem_t	*forks;
 	sem_t	*lock;
 }					t_data;
 
 //	-------- routine
-int	routine(t_philo *philo);
+int	routine(t_data *data);
 
 //// ----- utils
 int	ft_atoi(const char	*str);
@@ -78,8 +80,8 @@ long	ft_time(void);
 //	-------- actions
 void	take_forks(t_philo *philo);
 void	eating(t_philo *philo);
-void	sleeping(t_philo *philo);
-void	thinking(t_philo *philo);
+void	sleeping(t_data *data);
+void	thinking(t_data *data);
 void	died(t_philo *philo);
 //void	check_dead(t_philo *philo);
 int	check_deadd(t_data *data);
