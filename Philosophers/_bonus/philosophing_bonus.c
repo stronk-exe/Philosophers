@@ -5,50 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/10 14:08:07 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/13 23:26:33 by ael-asri         ###   ########.fr       */
+/*   Created: 2022/03/21 21:56:05 by ael-asri          #+#    #+#             */
+/*   Updated: 2022/04/14 02:17:12 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-void	gg(t_philo *philo)
+void	*chh(void *p)
 {
-//	t_philo *philo;
+	t_philo *philo;
 //	t_data	*data=NULL;
 //	int	i;
 
-//	philo = p;
-//	while (1)
-//	{
-		take_forks(philo);
-		eating(philo);
-		sleeping(philo);
-		thinking(philo);
-//	}
+	philo = p;
+	
+	return(NULL);
 }
 
 int	create_philosophers(t_data *data)
 {
 	int	i;
 //	t_philo *my_philo;
-
+//	pthread_t		t;
 	data->philo = malloc(sizeof(t_philo) * data->n_philo);
 	if(!data->philo)
 		return (0);
 	i = 0;
 //	printf("t_die isss %d\n", data->t_die);
-	
-//	data->forks = sem_unlink("/forks");
-//	data->forks = sem_open("/forks", O_CREAT, 0666, data->n_philo);
 	while (i < data->n_philo)
 	{
-		data->philo[i].id = i+1;
+		
 		data->pid[i] = fork();
-	//	printf("hello\n");
 		if (data->pid[i] == 0)
 		{
-			
+			data->philo[i].id = i+1;
 			data->philo[i].t_eat = data->t_eat;
 			data->philo[i].t_sleep = data->t_sleep;
 			data->philo[i].t_die = data->t_die;
@@ -61,36 +52,29 @@ int	create_philosophers(t_data *data)
 			data->philo[i].start_time = get_time();
 			if (data->nm_ishere)
 				data->philo[i].n_meals = data->n_meals;
-		//	gg(&data->philo[i]);
-		// 	take_forks(&data->philo[i]);
-		// 	printf("I'm philo %d\n", data->philo[i].id);
-		//	gg(&data->philo[i]);
-		// 	eating(&data->philo[i]);
-		// 	sleeping(&data->philo[i]);
-		// 	thinking(&data->philo[i]);
+			if (pthread_create(&data->philo[i].t, NULL, &chh, (void*)&data->philo[i]) != 0)
+				return (0);
 			
+		//	
+			if (pthread_join(data->philo[i].t, NULL) != 0)
+				return (0);
+		//	printf("I'm philooo %d\n", data->philo[i].id);
+			routine(&data->philo[i]);
 		}
 		else
-			waitpid(-1,NULL,0);
+			waitpid(-1, NULL, 0);
 		
+	//	if (pthread_mutex_init(&data->philo[i].lock, NULL) != 0)
+	//		return (0);
+	//	printf("%d\n", data->philo[i].l_fork);
+	//	printf("%d\n", data->philo[i].r_fork);
+	//	if (pthread_mutex_init(&data->philo[i].output, NULL) != 0)
+	//		return (0);
+		
+	//	printf("meals %d\n", data->philo[i].n_meals);
 		i++;
 	}
-
-//	i = 0;
-	// while (1)
-	// {
-	// 	i = 0;
-	// 	// if (!check_deadd(data))
-	// 	// 	//	return (0);
-	// 	// 	//	break;
-	// 	// 		exit(1);
-	// 	while (i < data->n_philo)
-	// 	{
-	// 		gg(&data->philo[i]);
-	// 	//	sem_unlink("lock");
-	// 		i++;
-	// 	}
-	// }
-//	exit(1);
+//	if (pthread_mutex_init(data->philo, NULL) != 0)
+//		return (0);
 	return (1);
 }
