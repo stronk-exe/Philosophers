@@ -26,10 +26,12 @@ SRCS =  philosophers.c\
 
 BSRCS = _bonus/philosophers_bonus.c\
 		_bonus/forking_bonus.c\
+		_bonus/threading_bonus.c\
 		_bonus/routine_bonus.c\
 		_bonus/actions_bonus.c\
 		philosophers_utils.c\
 		get_time.c\
+		_bonus/philosophing_bonus.c\
 		ending.c
 
 OBJS = $(SRCS:.c=.o)

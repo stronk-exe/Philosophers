@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:13:37 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/14 02:12:09 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/14 21:19:19 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	*routine(void *p)
 	return(0);
 }
 */
-int	routine(t_philo *philo)
+int	routine(t_data *data)
 {
 //	t_philo *philo;
 //	t_data	*data=NULL;
@@ -60,7 +60,9 @@ int	routine(t_philo *philo)
 //	pthread_mutex_lock(&philo->output);
 //	while (!philo->is_dead)
 //	while (!philo->is_dead)
-	while (1)
+int i=0;
+	while (i<5)
+//	while (1)
 	{
 		//	check_dead(philo);
 	//	i = 0;
@@ -72,11 +74,11 @@ int	routine(t_philo *philo)
 		//	pthread_mutex_lock(&philo->output);
 		//	if (philo->is_dead)
 		//		return (NULL);
-			take_forks(philo);
+			take_forks(data);
 		//	check_dead(philo);
 		//	if (philo->is_dead)
 		//		return (NULL);
-			eating(philo);
+			eating(data);
 		//	check_dead(philo);
 		//	if (philo->is_dead)
 		//		return (NULL);
@@ -86,20 +88,22 @@ int	routine(t_philo *philo)
 		//	if (philo->meals >= 5)
 		//		died(philo);
 //			printf("i'm philo %d\n", philo->id);
-			sleeping(philo);
+			sleeping(data);
 		//	check_dead(philo);
 		//	if (philo->is_dead)
 		//		return (NULL);
-			thinking(philo);
+			thinking(data);
 		//	check_dead(philo);
 		//	if (philo->is_dead)
 		//		return (NULL);
 		//	printf("i %d\n", i);
-		//	i++;
+			i++;
 	//	}
 	}
 //	pthread_mutex_unlock(&philo->output);
 //	died(&data);
 //	pthread_mutex_destroy(data->philo->fork);
+	exit(1);
 	return(0);
+	
 }

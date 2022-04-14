@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/14 02:06:52 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/14 17:12:59 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include "stdlib.h"
 # include "pthread.h"
 # include "sys/time.h"
-# include "sys/wait.h"
-# include "sys/types.h"
 # include "semaphore.h"
 # include "fcntl.h"
 
@@ -78,16 +76,17 @@ int	create_threads(t_data *data);
 long	get_time();
 long	ft_time(void);
 //	-------- actions
-void	take_forks(t_philo *philo);
-void	eating(t_philo *philo);
+void	take_forks(t_data *data);
+void	eating(t_data *data);
 void	sleeping(t_data *data);
 void	thinking(t_data *data);
-void	died(t_philo *philo);
+void	died(t_data *data);
 //void	check_dead(t_philo *philo);
 int	check_deadd(t_data *data);
 int	sf_salina(t_data *data);
 
 /////////////
 void	*chh(void *p);
+
 
 #endif
