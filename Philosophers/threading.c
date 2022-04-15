@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/10 00:45:58 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/15 18:14:00 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,7 +163,11 @@ int	create_threads(t_data *data)
 	//	pthread_mutex_init(&data->philo[i].lock, NULL);	
 	//	pthread_mutex_lock(&data->gg);
 		if (pthread_create(&data->t[i], NULL, &routine, (void*)&data->philo[i]) != 0)
+		{
+			usleep(100);
 			return (0);
+		}
+		
 	//	if (!routine(ph))
 	//		return (0);
 	//	pthread_mutex_unlock(&data->gg);

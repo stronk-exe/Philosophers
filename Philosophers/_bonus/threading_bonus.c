@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/14 18:38:40 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/15 15:34:23 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ int	check_meals(t_data *data)
 	return (1);
 }
 
-int	check_deadd(t_data *data)
+void	*check_dead(void *d)
 {
 //	printf("tdie %d\n", philo->t_die);
 //	printf("last meal %ld\n", philo->last_meal);
+	t_data	*data;
 	int	i;
 	long	timing;
 
+	data = d;
 	i = 0;
 	
 //	printf("timing %ld\n", get_time()-philo->last_meal);
@@ -43,12 +45,19 @@ int	check_deadd(t_data *data)
 //	if (philo->meals >= 5 || philo->last_meal + philo->t_die >= get_time()/* || get_time() - philo->start_time >= philo->t_die*/)
 		{
 			data->philo.is_dead = 1;
-		//	died(data);
+			died(data);
 		//	sf_salina(data);
 		//	system("leaks philo");
+			int j=0;
+			while (j < data->n_philo)
+			{
+				kill(data->pid[j], SIGKILL);
+				j++;
+			}
+			
 			printf("hey from ddd---------------------\n");
-			return (0);
-		//	exit(1);
+		//	return (0);
+			exit(1);
 		}
 		
 		if (data->nm_ishere && check_meals(data)/*(data->philo[i].meals > data->philo[i].n_meals)*/)
@@ -58,13 +67,13 @@ int	check_deadd(t_data *data)
 		//	sf_salina(data);
 		//	system("leaks philo");
 			printf("we done here---------------------\n");
-			return (0);
+		//	return (0);
 		//	exit(1);
 		}
 		i++;
 	}
 	
-	return (1);
+	return (NULL);
 }
 /*
 int	create_threads(t_data *data)

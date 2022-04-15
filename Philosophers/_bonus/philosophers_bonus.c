@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/14 18:41:41 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/15 23:28:54 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,42 @@ void	*chh(void *p)
 	return(NULL);
 }
 
+void	*gg(void *d)
+{
+	t_data *data;
+	long	tim;
+
+	data = d;
+	while (1)
+	{
+		tim = get_time();
+		// printf("dd %ld \n", data->philo.last_meal);
+		// printf("tim %ld \n", tim);
+		// printf("tim-- %ld \n", tim - data->philo.last_meal);
+		int	gg = get_time() - data->philo.last_meal;
+	//		printf("gg %d \n", gg);
+		if (gg > data->t_die)
+		{
+			sem_wait(data->lock);
+			printf("died\n");
+			sem_post(data->lock);
+			exit(0);	
+		}
+	}
+	return (NULL);
+}
+
+int	ft_init(t_data *data)
+{
+	data->philo.last_meal = get_time();
+	if (pthread_create(&data->tid, NULL, &gg, (void*)&data) != 0)
+		return (0);
+	pthread_detach(data->tid);
+//	if (pthread_join(data->tid, NULL) != 0)
+//		return (0);
+	return(1);
+}
+
 int ft_holoa(t_data *data)
 {
 	int	i=0;
@@ -108,27 +144,30 @@ int ft_holoa(t_data *data)
     while (i < data->n_philo)
 	{
 		data->philo.id = i+1;
-		data->philo.t_eat = data->t_eat;
-			data->philo.t_sleep = data->t_sleep;
-			data->philo.t_die = data->t_die;
-			data->philo.n = data->n_philo;
-			data->philo.l_fork = &data->forks[data->philo.id];
-			data->philo.r_fork = &data->forks[(data->philo.id + 1) % data->n_philo];
-			data->philo.meals = 0;
-			data->philo.is_dead = 0;
-			data->philo.last_meal = get_time();
-			data->philo.start_time = get_time();
-			if (data->nm_ishere)
-				data->philo.n_meals = data->n_meals;
-			
+		
+	//	data->philo.t_eat = data->t_eat;
+	//	data->philo.t_sleep = data->t_sleep;
+	//	data->philo.t_die = data->t_die;
+	//	data->philo.n = data->n_philo;
+		//	data->philo.fork = &data->forks[data->philo.id];
+		//	data->philo.r_fork = &data->forks[(data->philo.id + 1) % data->n_philo];
+		data->philo.meals = 0;
+		data->philo.is_dead = 0;
+		
+	//	data->philo.start_time = get_time();
+//		if (data->nm_ishere)
+			data->philo.n_meals = data->n_meals;
+//		printf("hello %d\n", data->pid[i]);
+		
+		
 		data->pid[i] = fork();
+		
 		if (data->pid[i] == 0)
 		{
-			
-            if (pthread_create(&data->t, NULL, &chh, (void*)&data) != 0)
-				return (0);
-			
-			pthread_join(data->t, NULL);
+		//	printf("holaaa\n");
+            ft_init(data);
+			routine(data);
+		//	pthread_join(data->t, NULL);
 			// while (1)
 			// {
 			// 	if (!check_deadd(data))
@@ -138,13 +177,14 @@ int ft_holoa(t_data *data)
 			// }
 		//    pthread_detach(data->t);
 		//	printf("hii\n");
-		//	if (pthread_join(data->philo[i].t, NULL) != 0)
-            routine(data);
+			
+		    
+		//	printf("hii\n");
 		//	ft_init_philo(args);
 		//	ft_routine(args);
 		}
 //		else
-//			waitpid(-1,NULL,0);
+//			waitpid(data->pid[i],NULL,0);
 		i++;
 	}
 	return(1);
@@ -180,7 +220,7 @@ int main(int ac, char **av)
 		init_semaphores(&data);
 	//	if (!create_philosophers(&data))
 	//		return (0);
-	
+	//	printf("well inited\n");
 		ft_holoa(&data);
 		
 	//	if (!create_threads(&data))

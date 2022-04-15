@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/14 17:12:59 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/15 20:23:17 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "sys/time.h"
 # include "semaphore.h"
 # include "fcntl.h"
+# include "signal.h"
 
 typedef struct s_philo
 {
@@ -31,11 +32,11 @@ typedef struct s_philo
 	int				n_meals;
 	//////////////////
 	int				id;
-	sem_t	*r_fork;
-	sem_t	*l_fork;
+//	sem_t	*r_fork;
+//	sem_t	*fork;
 	int				meals;
 	long			last_meal;
-	sem_t	lock;
+//	sem_t	lock;
 //	pthread_mutex_t	output;
 	int				is_dead;
 	int				start_time;
@@ -44,13 +45,14 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	pthread_t		t;
+	pthread_t		tid;
 	int				n_philo;
 	int				t_die;
 	int				t_sleep;
 	int				t_eat;
 	int				n_meals;
 	int				nm_ishere;
+	int				start_time;
 	t_philo			philo;
 	pid_t	*pid;
 	sem_t	*forks;
@@ -58,7 +60,7 @@ typedef struct s_data
 }					t_data;
 
 //	-------- routine
-int	routine(t_data *data);
+void	*routine(void *data);
 
 //// ----- utils
 int	ft_atoi(const char	*str);
@@ -77,12 +79,12 @@ long	get_time();
 long	ft_time(void);
 //	-------- actions
 void	take_forks(t_data *data);
-void	eating(t_data *data);
+//void	eating(t_data *data);
 void	sleeping(t_data *data);
-void	thinking(t_data *data);
+//void	thinking(t_data *data);
 void	died(t_data *data);
 //void	check_dead(t_philo *philo);
-int	check_deadd(t_data *data);
+void	*check_dead(void *data);
 int	sf_salina(t_data *data);
 
 /////////////
