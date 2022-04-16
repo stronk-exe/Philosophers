@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:37:59 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/16 01:06:30 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/16 14:46:09 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ long	ft_time(void)
 	return (res);
 }
 
-unsigned long long	get_time()
+long	get_time()
 {
 	struct timeval	current_time;
 //	int				time;

@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/16 01:39:22 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:42:45 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	throw_error(void)
 	printf("opps error\n");
 	return(0);
 }
-
+/*
 void	*chh(void *p)
 {
 	t_philo *philo;
@@ -127,11 +127,63 @@ void	*gg(void *d)
 	}
 	return (NULL);
 }
+*/
+void	*ft_routine(void *d)
+{
+	t_data	*data;
+
+	data = (t_data *)d;
+//	printf("my id is %d\n", data->philo.id);
+	data->start_time = get_time();
+	
+	while (1)
+	{
+	//	printf("nnn\n");
+		eating(data);
+	//	printf("aww\n");
+		sleeping_thinking(data);
+	}
+	return (NULL);
+}
+void	*ft_check(void *d)
+{
+	t_data	*data;
+	long	tim;
+
+	data = d;
+	
+	while (1)
+	{
+		tim = get_time();
+		// printf("tim %ld\n", tim);
+		// printf("tdie %d\n", data->t_die);
+		// printf("last meal %ld\n", tim - data->philo.last_meal);
+		if ((tim - data->philo.last_meal) > data->t_die)
+		{
+			
+		//	sem_wait(data->lock);
+			int	time = get_time() - data->start_time;
+			printf("%d %d died\n", time, data->philo.id);
+		//	int j=0;
+			// while (j < data->n_philo)
+			// {
+			// //	if (data->pid[j] != 0)
+			// 		kill(data->pid[j], SIGKILL);
+			// //	printf("j %d\n", data->pid[j]);
+			// 	j++;
+			// }
+			
+			exit(0);
+		}
+	}
+	
+	return (NULL);
+}
 
 int	ft_init(t_data *data)
 {
 	data->philo.last_meal = get_time();
-	if (pthread_create(&data->tid, NULL, &gg, data) != 0)
+	if (pthread_create(&data->tid, NULL, &ft_check, data) != 0)
 		return (0);
 	pthread_detach(data->tid);
 //	if (pthread_join(data->tid, NULL) != 0)
@@ -139,38 +191,43 @@ int	ft_init(t_data *data)
 	return(1);
 }
 
-int ft_holoa(t_data *data)
+int ft_philo(t_data *data)
 {
-	int	i=0;
+	int	i;
 
+	i = 0;
+	data->start_time = get_time();
     while (i < data->n_philo)
 	{
 		
-		data->philo.id = i+1;
+	//
 	//	data->philo.t_eat = data->t_eat;
 	//	data->philo.t_sleep = data->t_sleep;
 	//	data->philo.t_die = data->t_die;
 	//	data->philo.n = data->n_philo;
 		//	data->philo.fork = &data->forks[data->philo.id];
 		//	data->philo.r_fork = &data->forks[(data->philo.id + 1) % data->n_philo];
-		data->philo.meals = 0;
-		data->philo.is_dead = 0;
+		
+//		data->philo.meals = 0;
+//		data->philo.is_dead = 0;
 		
 	//	data->philo.start_time = get_time();
 //		if (data->nm_ishere)
-			data->philo.n_meals = data->n_meals;
+//			data->philo.n_meals = data->n_meals;
 //		printf("hello %d\n", data->pid[i]);
 		
-		
+		data->philo.id = i+1;
 		data->pid[i] = fork();
-		printf("pid %u\n", data->pid[i]);
+//		printf("pid %u\n", data->pid[i]);
 		if (data->pid[i] == 0)
 		{
-			
 		//	printf("holaaa\n");
+		
             ft_init(data);
-			routine(data);
-			exit(0);
+	//		printf("hii\n"); 
+			ft_routine(data);
+			
+		//	printf("my id is %d\n", data->philo.id);
 		//	pthread_join(data->t, NULL);
 			// while (1)
 			// {
@@ -180,20 +237,30 @@ int ft_holoa(t_data *data)
 			// 	//	break;
 			// }
 		//    pthread_detach(data->t);
-		//	printf("hii\n");
-			
-		    
+		//
 		//	printf("hii\n");
 		//	ft_init_philo(args);
 		//	ft_routine(args);
 		}
 		// else
+		// 	wait(0);
 		i++;
+		
 	}
 	return(1);
 }
 
+void	kill_them(t_data *data)
+{
+	int	i;
 
+	i = 0;
+	while (i < data->n_philo)
+	{
+		kill(data->pid[i], SIGKILL);
+		i++;
+	}
+}
 
 int main(int ac, char **av)
 {
@@ -223,8 +290,10 @@ int main(int ac, char **av)
 	//	if (!create_philosophers(&data))
 	//		return (0);
 	//	printf("well inited\n");
-		ft_holoa(&data);
+		ft_philo(&data);
 		
+		kill_them(&data);
+	//	printf("***************\n");
 	//	if (!create_threads(&data))
 	//		return (0);
 	//	sf_salina(&data);

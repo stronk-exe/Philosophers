@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/16 01:04:57 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/16 18:22:21 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ typedef struct s_philo
 //	sem_t	*r_fork;
 //	sem_t	*fork;
 	int				meals;
-	unsigned long long		last_meal;
+	long		last_meal;
 //	sem_t	lock;
 //	pthread_mutex_t	output;
 	int				is_dead;
-	int				start_time;
+	long				start_time;
 	
 }					t_philo;
 
@@ -75,16 +75,16 @@ int	init_semaphores(t_data *data);
 int	create_threads(t_data *data);
 
 //	-------- time
-unsigned long long	get_time();
+long	get_time();
 long	ft_time(void);
 //	-------- actions
-void	take_forks(t_data *data);
-//void	eating(t_data *data);
-void	sleeping(t_data *data);
+//void	take_forks(t_data *data);
+void	eating(t_data *data);
+void	sleeping_thinking(t_data *data);
 //void	thinking(t_data *data);
 void	died(t_data *data);
 //void	check_dead(t_philo *philo);
-void	*check_dead(void *data);
+//void	*check_dead(void *data);
 int	sf_salina(t_data *data);
 
 /////////////

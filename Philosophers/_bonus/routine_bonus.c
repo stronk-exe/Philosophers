@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 23:13:37 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/16 01:38:36 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/16 15:02:00 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	*routine(void *d)
 	{
 	//	printf("jj\n");
 	//	check_dead(data);
-			take_forks(data);
+	//		take_forks(data);
 		//	eating(data);
-			sleeping(data);
+	//		sleeping(data);
 		//	thinking(data);
 	//		i++;
 	//	}
