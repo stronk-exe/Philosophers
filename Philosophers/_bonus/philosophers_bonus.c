@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/15 23:28:54 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/16 01:39:22 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,19 @@ void	*chh(void *p)
 void	*gg(void *d)
 {
 	t_data *data;
-	long	tim;
+	unsigned long long	tim;
 
-	data = d;
+	data = (t_data*)d;
 	while (1)
 	{
 		tim = get_time();
-		// printf("dd %ld \n", data->philo.last_meal);
+	//	printf("tim %llu \n", tim);
+	//	usleep(1000);
+	//	printf("last meal %llu \n", get_time() - tim);
 		// printf("tim %ld \n", tim);
-		// printf("tim-- %ld \n", tim - data->philo.last_meal);
+	//	printf("tim-- %llu \n", tim - data->philo.last_meal);
 		int	gg = get_time() - data->philo.last_meal;
-	//		printf("gg %d \n", gg);
+	//	printf("gg %d\n", gg);
 		if (gg > data->t_die)
 		{
 			sem_wait(data->lock);
@@ -129,7 +131,7 @@ void	*gg(void *d)
 int	ft_init(t_data *data)
 {
 	data->philo.last_meal = get_time();
-	if (pthread_create(&data->tid, NULL, &gg, (void*)&data) != 0)
+	if (pthread_create(&data->tid, NULL, &gg, data) != 0)
 		return (0);
 	pthread_detach(data->tid);
 //	if (pthread_join(data->tid, NULL) != 0)
@@ -143,8 +145,8 @@ int ft_holoa(t_data *data)
 
     while (i < data->n_philo)
 	{
-		data->philo.id = i+1;
 		
+		data->philo.id = i+1;
 	//	data->philo.t_eat = data->t_eat;
 	//	data->philo.t_sleep = data->t_sleep;
 	//	data->philo.t_die = data->t_die;
@@ -161,12 +163,14 @@ int ft_holoa(t_data *data)
 		
 		
 		data->pid[i] = fork();
-		
+		printf("pid %u\n", data->pid[i]);
 		if (data->pid[i] == 0)
 		{
+			
 		//	printf("holaaa\n");
             ft_init(data);
 			routine(data);
+			exit(0);
 		//	pthread_join(data->t, NULL);
 			// while (1)
 			// {
@@ -183,8 +187,7 @@ int ft_holoa(t_data *data)
 		//	ft_init_philo(args);
 		//	ft_routine(args);
 		}
-//		else
-//			waitpid(data->pid[i],NULL,0);
+		// else
 		i++;
 	}
 	return(1);
@@ -216,7 +219,6 @@ int main(int ac, char **av)
 			return (throw_error());
 	//	if (pthread_mutex_init(&data.lock, NULL) != 0)
 	//		return (0);
-		
 		init_semaphores(&data);
 	//	if (!create_philosophers(&data))
 	//		return (0);

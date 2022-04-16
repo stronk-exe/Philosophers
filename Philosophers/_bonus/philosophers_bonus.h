@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/15 20:23:17 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/16 01:04:57 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_philo
 //	sem_t	*r_fork;
 //	sem_t	*fork;
 	int				meals;
-	long			last_meal;
+	unsigned long long		last_meal;
 //	sem_t	lock;
 //	pthread_mutex_t	output;
 	int				is_dead;
@@ -75,7 +75,7 @@ int	init_semaphores(t_data *data);
 int	create_threads(t_data *data);
 
 //	-------- time
-long	get_time();
+unsigned long long	get_time();
 long	ft_time(void);
 //	-------- actions
 void	take_forks(t_data *data);
