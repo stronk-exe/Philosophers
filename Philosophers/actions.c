@@ -6,64 +6,24 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/10 00:27:28 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/17 18:41:02 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-/*
-void	take_forks(t_data *data)
-{
-	pthread_mutex_lock(&data->forks[philo->r_fork]);
-	printf("%d %d has taken a fork\n", data->t_eat, philo->id);
-	pthread_mutex_lock(&data->forks[philo->l_fork]);
-	printf("%d %d has taken a fork\n", data->t_eat, philo->id);
-}
-
-void	drop_forks(t_data *data, t_philo *philo)
-{
-	pthread_mutex_unlock(&data->forks[philo->r_fork]);
-	pthread_mutex_unlock(&data->forks[philo->l_fork]);
-}
-
-void	eating(t_data *data)
-{
-	// philo->r_fork = philo->id;
-	// philo->l_fork = philo->id-1;
-	printf("it's me %d\n", (data->n_philo));
-	// if (philo->id % 2 == 0) // if odd
-	// {
-	// 	philo->r_fork = (int)(philo->id % data->n_philo);
-	// 	philo->l_fork = (int)(philo->id);
-	// }
-	// else // if even
-	// {
-	// 	philo->r_fork = (int)(philo->id);
-	// 	philo->l_fork = (int)(philo->id % data->n_philo);
-	// }
-	// printf("hoooo\n");
-	// pthread_mutex_lock(&data->forks[philo->r_fork]);
-	// printf("%d %d has taken a fork\n", data->t_eat, philo->id);
-	// pthread_mutex_lock(&data->forks[philo->l_fork]);
-	// printf("%d %d has taken a fork\n", data->t_eat, philo->id);
-		
-	take_forks(data);
-	printf("%d %d is eating\n", data->t_eat, data->philo->id);
-	usleep(data->t_eat);
-	drop_forks(data, data->philo);
-}
-*/
 
 void	take_forks(t_philo *philo)
 {
+	int	time;
+
 	if ((philo->id) % 2 == 0 && philo->id != philo->n)
 	{
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(philo->l_fork);
 		pthread_mutex_lock(&philo->lock);
-		int	time = get_time() - philo->start_time;
-		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
-		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
+		time = get_time() - philo->start_time;
+		printf("%d %d has taken a fork\n", time, philo->id);
+		printf("%d %d has taken a fork\n", time, philo->id);
 		pthread_mutex_unlock(&philo->lock);
 	}
 	else
@@ -71,89 +31,39 @@ void	take_forks(t_philo *philo)
 		pthread_mutex_lock(philo->l_fork);
 		pthread_mutex_lock(philo->r_fork);
 		pthread_mutex_lock(&philo->lock);
-		int	time = get_time() - philo->start_time;
-		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
-		printf("%d %d has taken a fork\n", /*data->t_eat*/time, philo->id);
+		time = get_time() - philo->start_time;
+		printf("%d %d has taken a fork\n", time, philo->id);
+		printf("%d %d has taken a fork\n", time, philo->id);
 		pthread_mutex_unlock(&philo->lock);
 	}
-	
 }
-/*
-void	drop_forks(t_philo *philo)
-{
-	pthread_mutex_unlock(&philo->r_fork);
-	pthread_mutex_unlock(&philo->l_fork);
-}
-*/
+
 void	eating(t_philo *philo)
 {
-	
-	// philo->r_fork = philo->id;
-	// philo->l_fork = philo->id-1;
-//	printf("it's me %d\n", (data->n_philo));
-//	printf("i %d\n", i);
-//	pthread_mutex_lock(&data->philo[i].lock);
-/*	if (philo->id % 2 == 0) // if odd
-	{
-		philo->r_fork = (philo->id+1 % philo->n);
-		philo->l_fork = (philo->id);
-	}
-	else // if even
-	{
-		philo->r_fork = philo->id;
-		philo->l_fork = (philo->id+1 % philo->n);
-	}*/
-//	  printf("hoooo\n");
-	// pthread_mutex_lock(&data->forks[philo->r_fork]);
-	// printf("%d %d has taken a fork\n", data->t_eat, philo->id);
-	// pthread_mutex_lock(&data->forks[philo->l_fork]);
-	// printf("%d %d has taken a fork\n", data->t_eat, philo->id);
-	
-//	printf("r fork %s\n", philo->r_fork);
-//	printf("l fork %s\n", philo->l_fork);
-
-//	take_forks(philo);
-	
-	// pthread_mutex_lock(&philo->r_fork);
-	// pthread_mutex_lock(&philo->l_fork);
-	
-	// printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
-	// printf("%ld %d has taken a fork\n", /*data->t_eat*/get_time(), philo->id);
-/////////////////////////////////////////
+	int	time;
 
 	pthread_mutex_lock(&philo->lock);
-	int	gg = get_time() - philo->start_time;
-//	printf("timingoo %d\n", gg);
-	printf("%d %d is eating\n", gg, philo->id);
+	time = get_time() - philo->start_time;
+	printf("%d %d is eating\n", time, philo->id);
 	pthread_mutex_unlock(&philo->lock);
 	philo->meals++;
-	//------------------
-//	printf("************i'm %d my n meals %d\n", philo->id, philo->meals);
-	//------------------
 	philo->last_meal = get_time();
+//	ft_usleep(philo->t_eat * 1000);
 	usleep(philo->t_eat * 1000);
-///////////////////////////////////////
-
-//	drop_forks(philo);
-	//printf("hoooy\n");
-	
-//	pthread_mutex_unlock(&data->philo[i].lock);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
-	
-	
-//	
 }
 
 void	sleeping(t_philo *philo)
 {
-//	printf("t_sleep %d\n", data->t_sleep);
+	int	time;
+
 	pthread_mutex_lock(&philo->lock);
-	int	time = get_time() - philo->start_time;
+	time = get_time() - philo->start_time;
 	printf("%d %d is sleeping\n", time, philo->id);
 	pthread_mutex_unlock(&philo->lock);
+//	ft_usleep(philo->t_sleep * 1000);
 	usleep(philo->t_sleep * 1000);
-	
 }
 
 void	thinking(t_philo *philo)
@@ -165,11 +75,10 @@ void	thinking(t_philo *philo)
 
 void	died(t_philo *philo)
 {
+	int	time;
+
 	pthread_mutex_lock(&philo->lock);
-	int	time = get_time() - philo->start_time;
-	printf("%d %d died\n", /*data->t_sleep*/time, philo->id);
+	time = get_time() - philo->start_time;
+	printf("%d %d died\n", time, philo->id);
 	pthread_mutex_unlock(&philo->lock);
-	/////////////////////////////////////////
-//	exit(1); //// exit is forbiden a sssiiii
-	/////////////////////////////////////////
 }

@@ -6,12 +6,11 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/16 18:39:42 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:11:36 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-
 
 void	eating(t_data *data)
 {
@@ -33,7 +32,10 @@ void	eating(t_data *data)
 	printf("%d %d is eating\n", time, data->philo.id);
 	sem_post(data->lock);
 	data->philo.meals++;
+	printf("******i'm %d my meals %d\n", data->philo.id , data->philo.meals);
 	data->philo.last_meal = get_time();
+	if (data->nm_ishere && (data->philo.meals >= data->n_meals))
+		data->philo.done_eating = 1;
 	usleep(data->t_eat * 1000);
 	sem_post(data->forks);
 	sem_post(data->forks);

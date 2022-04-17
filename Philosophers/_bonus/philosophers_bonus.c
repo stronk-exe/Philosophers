@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/16 18:42:45 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:13:28 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,23 +128,40 @@ void	*gg(void *d)
 	return (NULL);
 }
 */
+int	check_mealsss(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	// while (i < data->n_philo)
+	// {
+	//	printf("meals %d\n", data->philo.id);
+		if (data->philo.meals < data->n_meals)
+		{
+		//	data->philo.done_eating = 1;
+			return (0);
+		}
+		i++;
+//	}
+//	printf("wewweew\n");
+	return (1);
+}
+
 void	*ft_routine(void *d)
 {
 	t_data	*data;
 
 	data = (t_data *)d;
-//	printf("my id is %d\n", data->philo.id);
 	data->start_time = get_time();
 	
 	while (1)
 	{
-	//	printf("nnn\n");
 		eating(data);
-	//	printf("aww\n");
 		sleeping_thinking(data);
 	}
 	return (NULL);
 }
+
 void	*ft_check(void *d)
 {
 	t_data	*data;
@@ -155,24 +172,17 @@ void	*ft_check(void *d)
 	while (1)
 	{
 		tim = get_time();
-		// printf("tim %ld\n", tim);
-		// printf("tdie %d\n", data->t_die);
-		// printf("last meal %ld\n", tim - data->philo.last_meal);
 		if ((tim - data->philo.last_meal) > data->t_die)
 		{
-			
-		//	sem_wait(data->lock);
-			int	time = get_time() - data->start_time;
-			printf("%d %d died\n", time, data->philo.id);
-		//	int j=0;
-			// while (j < data->n_philo)
-			// {
-			// //	if (data->pid[j] != 0)
-			// 		kill(data->pid[j], SIGKILL);
-			// //	printf("j %d\n", data->pid[j]);
-			// 	j++;
-			// }
-			
+			died(data);
+			sem_post(data->sos);
+			exit(0);
+		}
+		if (data->nm_ishere && check_mealsss(data))
+		{
+			data->philo.is_dead = 1;
+			died(data);
+			sem_post(data->sos);
 			exit(0);
 		}
 	}
@@ -199,54 +209,21 @@ int ft_philo(t_data *data)
 	data->start_time = get_time();
     while (i < data->n_philo)
 	{
-		
-	//
-	//	data->philo.t_eat = data->t_eat;
-	//	data->philo.t_sleep = data->t_sleep;
-	//	data->philo.t_die = data->t_die;
-	//	data->philo.n = data->n_philo;
-		//	data->philo.fork = &data->forks[data->philo.id];
-		//	data->philo.r_fork = &data->forks[(data->philo.id + 1) % data->n_philo];
-		
-//		data->philo.meals = 0;
-//		data->philo.is_dead = 0;
-		
-	//	data->philo.start_time = get_time();
-//		if (data->nm_ishere)
-//			data->philo.n_meals = data->n_meals;
-//		printf("hello %d\n", data->pid[i]);
-		
+		data->philo.meals = 0;
+		data->philo.is_dead = 0;
+		data->philo.done_eating = 0;
+		if (data->nm_ishere)
+			data->philo.n_meals = data->n_meals;
 		data->philo.id = i+1;
 		data->pid[i] = fork();
-//		printf("pid %u\n", data->pid[i]);
 		if (data->pid[i] == 0)
 		{
-		//	printf("holaaa\n");
-		
             ft_init(data);
-	//		printf("hii\n"); 
 			ft_routine(data);
-			
-		//	printf("my id is %d\n", data->philo.id);
-		//	pthread_join(data->t, NULL);
-			// while (1)
-			// {
-			// 	if (!check_deadd(data))
-			// 	//	return (0);
-			// 		exit(1);
-			// 	//	break;
-			// }
-		//    pthread_detach(data->t);
-		//
-		//	printf("hii\n");
-		//	ft_init_philo(args);
-		//	ft_routine(args);
 		}
-		// else
-		// 	wait(0);
 		i++;
-		
 	}
+	sem_wait(data->sos);
 	return(1);
 }
 
@@ -265,9 +242,6 @@ void	kill_them(t_data *data)
 int main(int ac, char **av)
 {
 	t_data data;
-	
-//	int	n_philo;
-//	int	t_sleep;
 
 	if (ac == 5 || ac == 6)
 	{
@@ -284,24 +258,9 @@ int main(int ac, char **av)
 		}
 		if (data.n_philo <= 0 || data.t_die <= 0 || data.t_eat <= 0 || data.t_sleep <= 0)
 			return (throw_error());
-	//	if (pthread_mutex_init(&data.lock, NULL) != 0)
-	//		return (0);
 		init_semaphores(&data);
-	//	if (!create_philosophers(&data))
-	//		return (0);
-	//	printf("well inited\n");
 		ft_philo(&data);
-		
 		kill_them(&data);
-	//	printf("***************\n");
-	//	if (!create_threads(&data))
-	//		return (0);
-	//	sf_salina(&data);
-		
-	//	pthread_mutex_init(&data.lock, NULL);
-	//	printf("hi\n");
-	//	printf("time %ld\n", get_time());
-	//	printf("ft_time %ld\n", ft_time());
 	}
 	else
 		return (throw_error());

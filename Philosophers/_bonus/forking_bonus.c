@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:51 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/16 18:41:26 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/17 13:43:16 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	init_semaphores(t_data *data)
 	sem_unlink("forks");
 	data->lock = sem_open("lock", O_CREAT, 0666, 1);
 	data->forks = sem_open("forks", O_CREAT, 0666, data->n_philo);
+	data->sos = sem_open("sos", O_CREAT, 0666, 0);
 //	data->t = malloc(sizeof(pthread_t) * data->n_philo);
 //	if(!data->t)
 //		return (0);

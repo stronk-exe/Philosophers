@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 17:30:14 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/10 00:20:43 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/17 18:31:20 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,7 @@ int	ft_atoi(const char	*str)
 	i = 0;
 	res = 0;
 	sign = 1;
-/*	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f')
-		i++;
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		else if (str[i] == '+')
-			sign = 1;
-		i++;
-	}*/
 	while (str[i] != '\0')
-//	while (str[i] >= '0' && str[i] <= '9')
 	{
 		if (str[i] < '0' || str[i] > '9')
 			return (0);

@@ -6,12 +6,12 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/10 00:30:05 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/17 18:40:00 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHERS
-# define PHILOSOPHERS
+#ifndef PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
 # include "unistd.h"
 # include "stdio.h"
@@ -58,20 +58,22 @@ typedef struct s_data
 void	*routine(void *p);
 
 //// ----- utils
-int	ft_atoi(const char	*str);
+int		ft_atoi(const char	*str);
 
 //	------ philosophing
-int	create_philosophers(t_data *data);
+int		create_philosophers(t_data *data);
 
 // ------ forking
-int	init_forkes(t_data *data);
+int		init_forkes(t_data *data);
 
 //	-------- threading
-int	create_threads(t_data *data);
+int		create_threads(t_data *data);
 
 //	-------- time
-long	get_time();
+long	get_time(void);
 long	ft_time(void);
+void	ft_usleep(int time);
+
 //	-------- actions
 void	take_forks(t_philo *philo);
 void	eating(t_philo *philo);
@@ -79,7 +81,7 @@ void	sleeping(t_philo *philo);
 void	thinking(t_philo *philo);
 void	died(t_philo *philo);
 //void	check_dead(t_philo *philo);
-int	check_deadd(t_data *data);
-int	sf_salina(t_data *data);
+int		check_deadd(t_data *data);
+int		sf_salina(t_data *data);
 
 #endif

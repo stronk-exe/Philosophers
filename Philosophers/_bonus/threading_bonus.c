@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/15 15:34:23 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/17 16:00:15 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	check_meals(t_data *data)
 	}
 	return (1);
 }
+
 
 void	*check_dead(void *d)
 {
