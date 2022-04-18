@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/17 18:40:00 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:47:02 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		create_threads(t_data *data);
 //	-------- time
 long	get_time(void);
 long	ft_time(void);
-void	ft_usleep(int time);
+void	ft_usleep(long time, int t);
 
 //	-------- actions
 void	take_forks(t_philo *philo);

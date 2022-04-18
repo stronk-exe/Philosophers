@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/17 18:41:02 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/18 01:47:16 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	eating(t_philo *philo)
 	pthread_mutex_unlock(&philo->lock);
 	philo->meals++;
 	philo->last_meal = get_time();
-//	ft_usleep(philo->t_eat * 1000);
-	usleep(philo->t_eat * 1000);
+	ft_usleep(philo->last_meal, philo->t_eat);
+//	usleep(philo->t_eat * 1000);
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 }
@@ -62,8 +62,8 @@ void	sleeping(t_philo *philo)
 	time = get_time() - philo->start_time;
 	printf("%d %d is sleeping\n", time, philo->id);
 	pthread_mutex_unlock(&philo->lock);
-//	ft_usleep(philo->t_sleep * 1000);
-	usleep(philo->t_sleep * 1000);
+	ft_usleep(philo->last_meal, philo->t_sleep);
+//	usleep(philo->t_sleep * 1000);
 }
 
 void	thinking(t_philo *philo)
