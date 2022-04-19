@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/18 01:48:09 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/18 15:07:31 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,12 @@ int	create_threads(t_data *data)
 	while (1)
 	{
 		if (!check_deadd(data))
+		{
+			printf("tfoo\n");
+		//	finish_them(data);
+			
 			return (0);
+		}
 		usleep(100);
 	}
 	i = 0;

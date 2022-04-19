@@ -6,13 +6,13 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:50 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/17 18:30:54 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:54:05 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	sf_salina(t_data *data)
+void	sf_salina(t_data *data)
 {
 	int	i;
 
@@ -28,6 +28,6 @@ int	sf_salina(t_data *data)
 	}
 	pthread_mutex_unlock(&data->lock);
 	pthread_mutex_destroy(&data->lock);
-	printf("**********wsupp\n");
-	return (0);
+//	printf("**********wsupp\n");
+//	return (0);
 }

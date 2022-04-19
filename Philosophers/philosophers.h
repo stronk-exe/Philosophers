@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/18 01:47:02 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/18 14:45:08 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	thinking(t_philo *philo);
 void	died(t_philo *philo);
 //void	check_dead(t_philo *philo);
 int		check_deadd(t_data *data);
-int		sf_salina(t_data *data);
+void	sf_salina(t_data *data);
+void	finish_them(t_data *data);
 
 #endif
