@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/18 15:07:31 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/20 18:01:08 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ int	check_meals(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 	{
-		if (data->philo[i].meals < data->n_meals)
-			return (0);
+		if (!data->philo[i].done_eating)
+			return (1);
 		i++;
 	}
-	return (1);
+//	sf_salina(data);
+	return (0);
 }
 
-int	check_deadd(t_data *data)
+int	check_dead(t_data *data)
 {
 	int		i;
 	long	timing;
@@ -39,15 +40,8 @@ int	check_deadd(t_data *data)
 		{
 			data->philo[i].is_dead = 1;
 			died(&data->philo[i]);
-			sf_salina(data);
-			printf("hey from ddd---------------------\n");
-			return (0);
-		}
-		if (data->nm_ishere && check_meals(data))
-		{
-			data->philo[i].is_dead = 1;
-			sf_salina(data);
-			printf("we done here---------------------\n");
+		//	sf_salina(data);
+			data->philo[i].alive = 0;
 			return (0);
 		}
 		i++;
@@ -72,13 +66,8 @@ int	create_threads(t_data *data)
 	}
 	while (1)
 	{
-		if (!check_deadd(data))
-		{
-			printf("tfoo\n");
-		//	finish_them(data);
-			
+		if (!check_dead(data) || !check_meals(data))
 			return (0);
-		}
 		usleep(100);
 	}
 	i = 0;
