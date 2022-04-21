@@ -6,7 +6,7 @@
 #    By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/23 14:50:46 by ael-asri          #+#    #+#              #
-#    Updated: 2022/04/20 21:35:00 by ael-asri         ###   ########.fr        #
+#    Updated: 2022/04/21 17:48:43 by ael-asri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME = philo_bonus
 
 SRCS = 	philosophers_bonus.c\
 		forking_bonus.c\
-		threading_bonus.c\
 		routine_bonus.c\
 		actions_bonus.c\
 		philosophers_utils_bonus.c\

@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 16:06:55 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:10:45 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	throw_error(void)
 	printf("opps error\n");
 	return (0);
 }
-
+/*
 void	finish_them(t_data *data)
 {
 	int	i;
@@ -34,6 +34,7 @@ void	finish_them(t_data *data)
 		pthread_join(data->t[gg], NULL);
 	}
 }
+*/
 
 int	big_init(t_data *data, int ac, char **av)
 {

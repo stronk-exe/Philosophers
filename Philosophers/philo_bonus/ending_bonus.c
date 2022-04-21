@@ -6,29 +6,26 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:50 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/20 21:35:15 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:39:11 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
-/*
-void	sf_salina(t_data *data)
+
+int	throw_error(void)
+{
+	printf("opps error\n");
+	return (0);
+}
+
+void	kill_them(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	free(data->t);
-	free(data->philo);
-	free(data->forks);
 	while (i < data->n_philo)
 	{
-		pthread_mutex_unlock(&data->forks[i]);
-		pthread_mutex_destroy(&data->forks[i]);
+		kill(data->pid[i], SIGKILL);
 		i++;
 	}
-	pthread_mutex_unlock(&data->lock);
-	pthread_mutex_destroy(&data->lock);
-//	printf("**********wsupp\n");
-//	return (0);
 }
-*/

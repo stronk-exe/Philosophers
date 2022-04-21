@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:56:05 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 14:54:33 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 18:12:51 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ int	create_philosophers(t_data *data)
 		data->philo[i].l_fork = &data->forks[data->philo[i].id];
 		data->philo[i].r_fork = &data->forks[(data->philo[i].id + 1)
 			% data->n_philo];
-		// data->philo[i].l_fork = &data->forks[data->philo[i].id];
-		// data->philo[i].r_fork = &data->forks[(data->philo[i].id + 1) % data->n_philo];
 		data->philo[i].meals = 0;
 		data->philo[i].done_eating = 0;
 		data->philo[i].is_dead = 0;
