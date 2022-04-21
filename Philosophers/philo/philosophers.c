@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/20 22:48:02 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:06:55 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	main(int ac, char **av)
 		if (!create_threads(&data))
 		{
 		//	finish_them(&data);
+			sf_salina(&data);
+		//		ft_free(&data);
 			printf("`````````done v2``````````\n");
 			return (0);
 		}

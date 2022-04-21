@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 20:37:59 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/18 01:46:29 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 15:57:08 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_usleep(long lmeal, int t)
 	{
 //		printf("time is %ld\n", time);
 //	printf("gettime is %ld\n", get_time());
-		usleep(10);
+		usleep(1);
 //		gg = get_time();
 	}
 }

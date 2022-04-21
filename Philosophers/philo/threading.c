@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/20 22:51:58 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 16:09:49 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	check_dead(t_data *data)
 		{
 			data->philo[i].is_dead = 1;
 			data->philo[i].alive = 0;
+			sf_salina(data);
 			died(&data->philo[i]);
 			
-		//	sf_salina(data);
+			
 			
 			return (0);
 		}
@@ -70,10 +71,12 @@ int	create_threads(t_data *data)
 	{
 		if (!check_dead(data) || !check_meals(data))
 		{
-			printf("---we done here---\n");
+		//	printf("---we done here---\n");
+		//	died(data->philo[i]);
+			sf_salina(data);
 				return (0);
 		}
-	//	usleep(10);
+		usleep(10);
 	}
 	i = 0;
 	while (i < data->n_philo)
