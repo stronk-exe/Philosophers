@@ -6,19 +6,16 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:56:05 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 18:12:51 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 21:53:43 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	create_philosophers(t_data *data)
+void	create_philosophers(t_data *data)
 {
 	int	i;
 
-	data->philo = malloc(sizeof(t_philo) * data->n_philo);
-	if (!data->philo)
-		return (0);
 	i = 0;
 	while (i < data->n_philo)
 	{
@@ -42,5 +39,4 @@ int	create_philosophers(t_data *data)
 			data->philo[i].n_meals = 0;
 		i++;
 	}
-	return (1);
 }

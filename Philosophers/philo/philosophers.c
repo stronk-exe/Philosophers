@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 18:10:45 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:12:37 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,6 @@ int	throw_error(void)
 	printf("opps error\n");
 	return (0);
 }
-/*
-void	finish_them(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	int gg = data->n_philo;
-	if (gg == 1)
-	{
-		pthread_mutex_unlock(&data->forks[0]);
-	}
-	while (gg)
-	{
-		gg--;
-		pthread_join(data->t[gg], NULL);
-	}
-}
-*/
 
 int	big_init(t_data *data, int ac, char **av)
 {
@@ -54,11 +36,6 @@ int	big_init(t_data *data, int ac, char **av)
 	if (data->n_philo <= 0 || data->t_die <= 0
 		|| data->t_eat <= 0 || data->t_sleep <= 0)
 		return (throw_error());
-	// if (data->n_philo == 1)
-	// {
-	// 	printf("0 1 died\n");
-	// 	return (0);
-	// }
 	return (1);
 }
 
@@ -73,17 +50,19 @@ int	main(int ac, char **av)
 		if (pthread_mutex_init(&data.lock, NULL) != 0)
 			return (0);
 		init_forkes(&data);
-		if (!create_philosophers(&data))
+		data.philo = malloc(sizeof(t_philo) * data.n_philo);
+		if (!data.philo)
 			return (0);
+		data.t = malloc(sizeof(pthread_t) * data.n_philo);
+		if (!data.t)
+			return (0);
+		create_philosophers(&data);
 		if (!create_threads(&data))
 		{
-		//	finish_them(&data);
 			sf_salina(&data);
-		//		ft_free(&data);
-			printf("`````````done v2``````````\n");
+			ft_free(&data);
 			return (0);
 		}
-	//	finish_them(&data);
 	}
 	else
 		return (throw_error());

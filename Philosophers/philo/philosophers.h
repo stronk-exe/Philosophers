@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 15:32:07 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 22:13:15 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,11 @@
 
 typedef struct s_philo
 {
-	//////////////////
 	int				n;
 	int				t_die;
 	int				t_sleep;
 	int				t_eat;
 	int				n_meals;
-	//////////////////
 	int				id;
 	int				alive;
 	int				done_eating;
@@ -63,7 +61,7 @@ void	*routine(void *p);
 int		ft_atoi(const char	*str);
 
 //	------ philosophing
-int		create_philosophers(t_data *data);
+void	create_philosophers(t_data *data);
 
 // ------ forking
 int		init_forkes(t_data *data);

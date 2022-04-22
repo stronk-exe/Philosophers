@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:51 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 16:30:57 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/21 23:31:41 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	init_done_eating(t_data *data)
 	{
 		if (pthread_create(&data->tid, NULL, &ft_eating_checker, data))
 		{
-			printf("Error pthread");
+			printf("Error while creating thread");
 			return (1);
 		}
 		pthread_detach(data->tid);
