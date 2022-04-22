@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/22 18:14:41 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:25:55 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void	take_forks(t_data *data)
 {
 	sem_wait(data->forks);
-	sem_wait(data->forks);
 	sem_wait(data->lock);
 	printf("%ld %d has taken a fork\n",
 		get_time() - data->start_time, data->philo.id);
 	sem_post(data->lock);
+	sem_wait(data->forks);
 	sem_wait(data->lock);
 	printf("%ld %d has taken a fork\n",
 		get_time() - data->start_time, data->philo.id);

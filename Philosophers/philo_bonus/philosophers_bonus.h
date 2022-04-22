@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/22 14:52:35 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/22 18:21:47 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,10 @@ typedef struct s_data
 	long		start_time;
 	t_philo		philo;
 	pid_t		*pid;
-	sem_t		*write_sem;
-	sem_t		*fork_sem;
 	sem_t		*stop;
 	sem_t		*done_eating;
 	sem_t		*forks;
 	sem_t		*lock;
-	sem_t		*sos;
 }					t_data;
 
 //	-------- routine
