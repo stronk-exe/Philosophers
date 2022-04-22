@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 16:26:21 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 17:41:17 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/22 14:52:35 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_data
 	int			t_eat;
 	int			n_meals;
 	int			nm_ishere;
-	int			start_time;
+	long		start_time;
 	t_philo		philo;
 	pid_t		*pid;
 	sem_t		*write_sem;
@@ -79,9 +79,10 @@ int		ft_init(t_data *data);
 long	get_time(void);
 void	ft_usleep(long lmeal, int t);
 //	-------- actions
-//void	take_forks(t_data *data);
+void	take_forks(t_data *data);
 void	eating(t_data *data);
-void	sleeping_thinking(t_data *data);
+void	sleeping(t_data *data);
+void	thinking(t_data *data);
 
 //void	ft_sleeping_thinking(t_data *data);
 //void	ft_taking_forks_eating(t_data *data);

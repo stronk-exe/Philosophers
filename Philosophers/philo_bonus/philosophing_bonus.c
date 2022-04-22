@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:56:05 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 17:32:03 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/22 10:43:43 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_philo(t_data *data)
 			ft_init(data);
 			ft_routine(data);
 		}
+		else
+			usleep(50);
 		i++;
 	}
 	sem_wait(data->stop);
