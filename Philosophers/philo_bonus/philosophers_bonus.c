@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/22 10:31:18 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 01:32:28 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 void	*ft_check(void *d)
 {
 	t_data	*data;
-	long	tim;
-	int		gg;
 
 	data = d;
 	while (1)
 	{
-		tim = get_time();
-		if ((tim - data->philo.last_meal) > data->t_die)
+		if ((get_time() - data->philo.last_meal) > data->t_die)
 		{
 			sem_wait(data->lock);
-			gg = get_time() - data->start_time;
-			printf("%d %d died\n", gg, data->philo.id);
+			printf("%ld %d died\n",
+				get_time() - data->start_time, data->philo.id);
 			sem_post(data->stop);
+			kill_them(data);
 			exit(0);
 		}
 		usleep(10);

@@ -6,62 +6,60 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/22 18:25:55 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 02:09:30 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-void	take_forks(t_data *data)
-{
-	sem_wait(data->forks);
-	sem_wait(data->lock);
-	printf("%ld %d has taken a fork\n",
-		get_time() - data->start_time, data->philo.id);
-	sem_post(data->lock);
-	sem_wait(data->forks);
-	sem_wait(data->lock);
-	printf("%ld %d has taken a fork\n",
-		get_time() - data->start_time, data->philo.id);
-	sem_post(data->lock);
-}
-
 void	eating(t_data *data)
 {
+	int	time;
+
+	sem_wait(data->forks);
+	sem_wait(data->forks);
 	sem_wait(data->lock);
-	printf("%ld %d is eating\n", get_time() - data->start_time, data->philo.id);
+	time = get_time() - data->start_time;
+	printf("%d %d has taken a fork\n", \
+		time, data->philo.id);
+	printf("%d %d has taken a fork\n", \
+		time, data->philo.id);
 	sem_post(data->lock);
-	data->philo.meals++;
+	sem_wait(data->lock);
+	time = get_time() - data->start_time;
+	printf("%d %d is eating\n", time, \
+		data->philo.id);
+	sem_post(data->lock);
 	data->philo.last_meal = get_time();
+	data->philo.meals++;
 	if (data->nm_ishere && data->philo.meals >= data->n_meals)
 		sem_post(data->done_eating);
-	ft_usleep(data->philo.last_meal, data->t_eat);
+	usleep(data->t_eat * 1000 - 10000);
+	ft_gg(data->t_eat + data->philo.last_meal);
 	sem_post(data->forks);
 	sem_post(data->forks);
 }
 
-void	sleeping(t_data *data)
+void	sleeping_thinking(t_data *data)
 {
+	int		time;
+	long	kk;
+
 	sem_wait(data->lock);
-	printf("%ld %d is sleeping\n",
-		get_time() - data->start_time, data->philo.id);
+	time = get_time() - data->start_time;
+	printf("%d %d is sleeping\n", time, data->philo.id);
 	sem_post(data->lock);
-	ft_usleep(get_time(), data->t_sleep);
-}
-
-void	thinking(t_data *data)
-{
+	kk = get_time();
+	usleep(data->t_sleep * 1000 - 10000);
+	ft_gg(data->t_sleep + kk);
 	sem_wait(data->lock);
-	printf("%ld %d is thinking\n",
-		get_time() - data->start_time, data->philo.id);
+	time = get_time() - data->start_time;
+	printf("%d %d is thinking\n", time, data->philo.id);
 	sem_post(data->lock);
 }
 
 void	died(t_data *data)
 {
-	int	time;
-
 	sem_wait(data->lock);
-	time = get_time() - data->philo.start_time;
-	printf("%d %d died\n", time, data->philo.id);
+	printf("%ld %d died\n", get_time() - data->start_time, data->philo.id);
 }

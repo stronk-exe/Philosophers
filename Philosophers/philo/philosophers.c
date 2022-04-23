@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 22:12:37 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 01:42:47 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	throw_error(void)
 {
-	printf("opps error\n");
+	printf("Error\n");
 	return (0);
 }
 

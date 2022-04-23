@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 23:07:11 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 02:00:34 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,29 @@ void	eating(t_philo *philo)
 	if (philo->alive)
 		printf("%d %d is eating\n", time, philo->id + 1);
 	pthread_mutex_unlock(&philo->lock);
-	philo->meals++;
 	philo->last_meal = get_time();
+	philo->meals++;
 	if (philo->n_meals && (philo->meals >= philo->n_meals))
 		philo->done_eating = 1;
-	ft_usleep(philo->last_meal, philo->t_eat);
+	usleep(philo->t_eat * 1000 - 10000);
+	ft_gg(philo->t_eat + philo->last_meal);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);
 }
 
 void	sleeping(t_philo *philo)
 {
-	int	time;
+	int		time;
+	long	kk;
 
 	pthread_mutex_lock(&philo->lock);
 	time = get_time() - philo->start_time;
 	if (philo->alive)
 		printf("%d %d is sleeping\n", time, philo->id + 1);
 	pthread_mutex_unlock(&philo->lock);
-	ft_usleep(get_time(), philo->t_sleep);
+	kk = get_time();
+	usleep(philo->t_sleep * 1000 - 10000);
+	ft_gg(philo->t_sleep + kk);
 }
 
 void	thinking(t_philo *philo)

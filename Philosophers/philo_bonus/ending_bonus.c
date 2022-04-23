@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/10 00:22:50 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/21 16:39:11 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 02:12:42 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	kill_them(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 	{
-		kill(data->pid[i], SIGKILL);
+		if (data->pid[i] != 0)
+			kill(data->pid[i], SIGKILL);
 		i++;
 	}
 }

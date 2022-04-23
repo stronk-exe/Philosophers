@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 22:59:52 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/22 14:31:00 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 01:46:47 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ int	check_dead(t_data *data)
 	i = 0;
 	while (i < data->n_philo)
 	{
-		pthread_mutex_lock(&data->time);
 		timing = get_time() - data->philo[i].last_meal;
-		pthread_mutex_unlock(&data->time);
 		if (timing >= data->philo[i].t_die)
 		{
 			data->philo[i].is_dead = 1;
