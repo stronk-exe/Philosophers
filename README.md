@@ -72,7 +72,7 @@ pthread_t is the data type provided by the pthread library which defines uniquel
 
 -------------------
 
-# Dead F*ing Lock
+# Dead Lock
 
 <img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/37506d96-d65f-4af4-807e-23e800ff3eff/spiderman-meme.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220423%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220423T201216Z&X-Amz-Expires=86400&X-Amz-Signature=9a36ff69b987349d6edcbe75eb87a7130361ee419f3fdab184c48c51796d113d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22spiderman-meme.webp%22&x-id=GetObject"/>
 <br/>
