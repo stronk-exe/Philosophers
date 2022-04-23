@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 17:11:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/23 01:32:28 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 02:53:07 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_check(void *d)
 	data = d;
 	while (1)
 	{
-		if ((get_time() - data->philo.last_meal) > data->t_die)
+		if ((get_time() - data->philo.last_meal) >= data->t_die)
 		{
 			sem_wait(data->lock);
 			printf("%ld %d died\n",

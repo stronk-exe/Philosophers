@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/23 02:09:30 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 02:56:43 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@ void	eating(t_data *data)
 	int	time;
 
 	sem_wait(data->forks);
-	sem_wait(data->forks);
 	sem_wait(data->lock);
 	time = get_time() - data->start_time;
 	printf("%d %d has taken a fork\n", \
 		time, data->philo.id);
+	sem_post(data->lock);
+	sem_wait(data->forks);
+	sem_wait(data->lock);
 	printf("%d %d has taken a fork\n", \
 		time, data->philo.id);
 	sem_post(data->lock);
