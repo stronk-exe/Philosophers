@@ -1,9 +1,9 @@
-Philosophers<br/>
+## Philosophers<br/>
 
-I never thought philosophy would be so deadly 
+*I never thought philosophy would be so deadly*
 <br><br>
 
-About threading processes in C.
+### About threading processes in C.
 |    ![philosophy-academy](https://user-images.githubusercontent.com/94312066/156004849-42e6e5f3-4dce-4042-a918-7a34f7cba8de.gif)  |
 |----------------------------------------------------------------------------------------------------------------------------------|
 
