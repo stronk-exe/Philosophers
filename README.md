@@ -1,4 +1,4 @@
-## Philosophers<br/>
+## Philosophers 🍝 <br/>
 
 *I never thought philosophy would be so deadly*
 <br><br>
