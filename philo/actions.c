@@ -6,7 +6,7 @@
 /*   By: ael-asri <ael-asri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 21:55:57 by ael-asri          #+#    #+#             */
-/*   Updated: 2022/04/23 17:27:49 by ael-asri         ###   ########.fr       */
+/*   Updated: 2022/04/23 18:01:22 by ael-asri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,5 @@ void	died(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->lock);
 	philo->alive = 0;
-	printf("%ld %d --died\n", get_time() - philo->start_time, philo->id + 1);
+	printf("%ld %d died\n", get_time() - philo->start_time, philo->id + 1);
 }
