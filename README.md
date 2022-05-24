@@ -37,7 +37,7 @@ As simple as it is, the Traditional - the single - thread process has only one t
 
 <br/>
 
-<img width="698" alt="Screen Shot 2022-03-22 at 12 02 17 AM" src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/b9494a6d-38e6-4263-a2fd-d9b84199dca7/main-qimg-68418f141f67cd2ff285758e44c07f6b-lq.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220419%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220419T184415Z&X-Amz-Expires=86400&X-Amz-Signature=fee66ed61f3d1d3d3acb6089d521294d1016f8588e3dfc462bbf17bdffe9fcdf&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22main-qimg-68418f141f67cd2ff285758e44c07f6b-lq.jpeg%22&x-id=GetObject">
+![main-qimg-68418f141f67cd2ff285758e44c07f6b-lq](https://user-images.githubusercontent.com/94312066/170009294-dc9c2264-be72-47fc-a6fa-fabd18a265fe.jpeg)
 
 ### Multithreaded programming
 
@@ -74,15 +74,15 @@ pthread_t is the data type provided by the pthread library which defines uniquel
 
 # Dead Lock
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/37506d96-d65f-4af4-807e-23e800ff3eff/spiderman-meme.webp?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220423%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220423T201216Z&X-Amz-Expires=86400&X-Amz-Signature=9a36ff69b987349d6edcbe75eb87a7130361ee419f3fdab184c48c51796d113d&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22spiderman-meme.webp%22&x-id=GetObject"/>
+![gg](https://user-images.githubusercontent.com/94312066/170009935-bb20d786-8f1c-49d3-aba4-b936bd39f19e.jpeg)
+
 <br/>
 
 The term '***DeadLock***' describes a condition in which two or more threads are blocked (hung) forever because they are waiting for each other.
 
 <br/>
 
-<img src="https://s3.us-west-2.amazonaws.com/secure.notion-static.com/bbbd9b8a-b700-42dd-8cbb-fca751d8d1b9/Screen_Shot_2022-03-22_at_5.22.51_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220423%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220423T201243Z&X-Amz-Expires=86400&X-Amz-Signature=07e74eb6225e4aa74b75667f83b6cc4353824cf6da268fdb9904e7d1f49920f9&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22Screen%2520Shot%25202022-03-22%2520at%25205.22.51%2520PM.png%22&x-id=GetObject"/>
-
+<img width="871" alt="Screen Shot 2022-03-22 at 5 22 51 PM" src="https://user-images.githubusercontent.com/94312066/170009465-f6288df4-c8ca-46c8-afec-02e9394ad865.png">
 
 
 * Data is stocked in the stack of the thread which is a local private area for each thread, so no other thread can see the data of the other one
