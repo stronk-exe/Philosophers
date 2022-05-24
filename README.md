@@ -7,6 +7,8 @@
 |    ![philosophy-academy](https://user-images.githubusercontent.com/94312066/156004849-42e6e5f3-4dce-4042-a918-7a34f7cba8de.gif)  |
 |----------------------------------------------------------------------------------------------------------------------------------|
 
+> ###      *Made with love by `stronk`, Good Luck :)*
+
 # Processes
 
 Process: is a program in execution.
